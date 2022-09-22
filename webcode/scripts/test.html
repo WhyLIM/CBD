@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>CRC Biomarker Database</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <!--<script src="./require.js"></script>-->
+    <!--<script src="./node_modules/require.js/test/test.js"></script>-->
+    <!--<script src="./node_modules/require.js/require.min.js"></script>-->
+</head>
+
+
+<body>
+    <table id="topopara">
+        <thead id="para_head"></thead>
+        <tbody id="para_body"></tbody>
+    </table>
+    
+    <!--<input type="button" id='cbutton' name="scriptbutton" value="Run Script">-->
+    <button id="cbutton" type="button"><div>Run Script</div></button>
+    
+    <script type="module">
+        import { createRequire } from './commonjs';
+        // // import { createRequire } from './node_modules/shelljs';
+        const require = createRequire(import.meta.url);
+    </script>
+    
+    <script type="text/javascript">
+        $(function() {
+            $("#cbutton").click(function() {
+                // import { createRequire } from './shell.js';
+                // const require = createRequire(import.meta.url);
+                var shell = require('shelljs');
+                shell.exec(`Rscript compute.R`);
+                var header = "";
+                $.getJSON("json.txt", function(data) {
+                    var topopara = "";
+                    $.each(data, function(i, n) {
+                        header = "<tr><th>Symbol</th><th>Degree</th><th>Betweenness</th><th>Closeness</th></tr>"
+                        topopara += "<tr><td>" + n["Symbol"] + 
+                            "</td><td>" + n["Degree"] + 
+                            "</td><td>" + n["Betweenness"] + 
+                            "</td><td>" + n["Closeness"] + 
+                            "</td></tr>";
+                    });
+                    $('#para_head').empty().html(header);
+                    $('#para_body').empty().html(topopara);
+                });
+            });
+        });
+    </script>
+</body>
