@@ -1,6 +1,6 @@
 <?php
 //connect to MySQL
-$con = mysqli_connect('localhost', 'cbd_limina_top', 'JfRxNRFxKXJ72RWy', 'cbd_limina_top');
+$con = mysqli_connect('localhost', '******', '********', 'cbd_limina_top');
 if (!$con) {
     die("Fail to connect MySQL: " . mysqli_connect_errno());
 }
