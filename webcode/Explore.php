@@ -35,50 +35,50 @@
             })
         }
         
-        // 没做完的加载动画，不会写
-        function loading() {
-            // window.open("loading.html", "_self");
-            // if (document.readyState == "complete") {
-                // window.open("loading.html", _self);
-            // }
-            // document.getElementsByClassName("main") = "<iframe src='loading.html' frameborder='0' scrolling='no' style='width: 100%;height: 100%'></iframe>";
-            // document.write("<iframe src='loading.html' frameborder='0' scrolling='no' style='width: 100%;height: 100%'></iframe>")
-            let createMask = () => {
-                // 如果已存在就不再创建
-                if (document.getElementById("loading")){
-                    return true;
-                }
-                let mask = document.createElement("iframe");
-                    mask.id = "loading";
-                    mask.className = "loading";
-                    mask.src = "loading.html"
-                // 把 mask 添加到 body 里。
-                document.body.appendChild(mask);
-                // 控制 <html> 标签的样式
-                document.documentElement.classList.add("htmlMask");
-                // 加载完成去掉遮罩
-                if (document.readyState == "complete") {
-                    deleteMask();
-                }
-            }
-            // 删除遮罩
-            let deleteMask = () => {
-                let mask;
-                // 如果 mask 存在，就删除
-                if (mask = document.getElementById("loading")) {
-                    // 移除 mask 上的点击事件
-                    mask.removeEventListener("click", deleteMask);
-                    // 删除 mask 标签
-                    mask.parentNode.removeChild(mask);
-                    // 去掉 <html> 标签的特定样式
-                    document.documentElement.classList.remove("htmlMask");
-                }
-            }
-        }
+        // // 没做完的加载动画，不会写
+        // function loading() {
+        //     // window.open("loading.html", "_self");
+        //     // if (document.readyState == "complete") {
+        //         // window.open("loading.html", _self);
+        //     // }
+        //     // document.getElementsByClassName("main") = "<iframe src='loading.html' frameborder='0' scrolling='no' style='width: 100%;height: 100%'></iframe>";
+        //     // document.write("<iframe src='loading.html' frameborder='0' scrolling='no' style='width: 100%;height: 100%'></iframe>")
+        //     let createMask = () => {
+        //         // 如果已存在就不再创建
+        //         if (document.getElementById("loading")){
+        //             return true;
+        //         }
+        //         let mask = document.createElement("iframe");
+        //             mask.id = "loading";
+        //             mask.className = "loading";
+        //             mask.src = "loading.html"
+        //         // 把 mask 添加到 body 里。
+        //         document.body.appendChild(mask);
+        //         // 控制 <html> 标签的样式
+        //         document.documentElement.classList.add("htmlMask");
+        //         // 加载完成去掉遮罩
+        //         if (document.readyState == "complete") {
+        //             deleteMask();
+        //         }
+        //     }
+        //     // 删除遮罩
+        //     let deleteMask = () => {
+        //         let mask;
+        //         // 如果 mask 存在，就删除
+        //         if (mask = document.getElementById("loading")) {
+        //             // 移除 mask 上的点击事件
+        //             mask.removeEventListener("click", deleteMask);
+        //             // 删除 mask 标签
+        //             mask.parentNode.removeChild(mask);
+        //             // 去掉 <html> 标签的特定样式
+        //             document.documentElement.classList.remove("htmlMask");
+        //         }
+        //     }
+        // }
     </script>
 </head>
 
-<body>
+<body onload="send_request();">
     <div class="main">
         <div class="header">
             <div class="header_resize">
