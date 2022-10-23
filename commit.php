@@ -52,13 +52,12 @@ switch ($_GET['action']) {
                 }
                 
                 if (empty($error)) {
-                    $query = "INSERT INTO submission
+                    $query = "INSERT INTO submission 
                     (`Biomarker`, `Category`, `Application`, `Location`, `PMID`, `Contributor`, `Email`, `Description`) 
                     VALUES('" . $Biomarker . "', '" . $Category . "', '" . $Application . "', '" . $Location . "', '" . $PMID . "','" . $Contributor . "', '" . $Email . "', '" . $Description . "');";
                     mysqli_query($con, $query);
                 } else {
-                    header('Location:Submission.php?action=add' .
-                        '&error=' . join($error, urlencode('<br/>')));
+                    header('Location:Submission.php?action=add' . '&error=' . join(urlencode('<br/>'), $error));
                 }
                 break;
         }
