@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "commonjs": "^0.0.1",
-    "require.js": "^1.0.0",
-    "shelljs": "^0.8.5"
-  }
-}
