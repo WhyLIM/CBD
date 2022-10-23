@@ -1,3 +1,7 @@
+# October, 2022
+
+- Fixed the commit feature.
+
 # August, 2022
 
 - Add Network Analysis base upon STRING API

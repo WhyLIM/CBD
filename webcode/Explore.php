@@ -76,6 +76,20 @@
         //     }
         // }
     </script>
+    <script>
+        // var _LoadingHtml = '<iframe id="loadingframe" width="100%" height="100%" class="hide" marginwidth="0" marginheight="0" frameborder="0" src="loading.html"></iframe>';
+        // // 呈现loading效果
+        // document.write(_LoadingHtml);
+        // // 监听加载状态改变
+        // document.onreadystatechange = completeLoading;
+        // // 加载状态为complete时移除loading效果
+        // function completeLoading() {
+        //     if (document.readyState == "complete") {
+        //         var loadingMask = document.getElementById('loadingframe');
+        //         loadingMask.parentNode.removeChild(loadingMask);
+        //     }
+        // }
+    </script>
 </head>
 
 <body onload="send_request();">
@@ -170,7 +184,7 @@
                                     <div style="display: flex;justify-content: space-around;">
                                         <button id="Clearbutton" onclick="clear_input();" type="button"><div>Clear</div></button>
                                         <!--<input id="Clearbutton" onclick="clear_input();" type="submit" value="Clear">-->
-                                        <input id="Querybutton" onclick="send_request();loading();" type="submit" value="Query">
+                                        <input id="Querybutton" onclick="send_request();" type="submit" value="Query">
                                     </div> <?php
                                 } ?>
                             </form>

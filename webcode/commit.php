@@ -18,32 +18,32 @@ switch ($_GET['action']) {
                 $Category = isset($_POST['Category']) ?
                     trim($_POST['Category']) : '';
                 if (empty($Category)) {
-                    $error[] = urlencode('Please enter the biomarker category.');
+                    $error[] = urlencode('Please choose or type category of your biomarker.');
                 }
-                $Type = isset($_POST['Type']) ?
-                    trim($_POST['Type']) : '';
-                if (empty($Type)) {
-                    $error[] = urlencode('Please select a biomarker type.');
+                $Application = isset($_POST['Application']) ?
+                    trim($_POST['Application']) : '';
+                if (empty($Application)) {
+                    $error[] = urlencode('Please select useage of your biomarker.');
                 }
                 $Location = isset($_POST['Location']) ?
                     trim($_POST['Location']) : '';
                 if (empty($Location)) {
-                    $error[] = urlencode('Please select the location.');
+                    $error[] = urlencode('Please select the location of your biomarker.');
                 }
                 $Contributor = isset($_POST['Contributor']) ?
                     trim($_POST['Contributor']) : '';
                 if (empty($Contributor)) {
-                    $error[] = urlencode('Please enter your name.');
+                    $error[] = urlencode('Please leave your real name.');
                 }
                 $PMID = isset($_POST['PMID']) ?
                     trim($_POST['PMID']) : '';
                 if (empty($PMID)) {
-                    $error[] = urlencode('Please enter a PMID.');
+                    $error[] = urlencode('Please enter PMID for the research of your biomarker.');
                 }
                 $Email = isset($_POST['Email']) ?
                     trim($_POST['Email']) : '';
                 if (empty($Email)) {
-                    $error[] = urlencode('Please enter an Email.');
+                    $error[] = urlencode('Please enter an E-mail to contact.');
                 }
                 $Description = isset($_POST['Description']) ?
                     trim($_POST['Description']) : '';
@@ -53,8 +53,9 @@ switch ($_GET['action']) {
                 
                 if (empty($error)) {
                     $query = "INSERT INTO submission
-                    (`Biomarker`, `Category`, `Type`, `Location`,`PMID`, `Contributor`, `Email`, `Description`) 
-                    VALUES(" . $Biomarker . ", '" . $Category . "', '" . $Type . "', '" . $Location . "', '" . $PMID . "','" . $Contributor . "', '" . $Email . "', '" . $Description . "');";
+                    (`Biomarker`, `Category`, `Application`, `Location`, `PMID`, `Contributor`, `Email`, `Description`) 
+                    VALUES('" . $Biomarker . "', '" . $Category . "', '" . $Application . "', '" . $Location . "', '" . $PMID . "','" . $Contributor . "', '" . $Email . "', '" . $Description . "');";
+                    mysqli_query($con, $query);
                 } else {
                     header('Location:Submission.php?action=add' .
                         '&error=' . join($error, urlencode('<br/>')));
@@ -68,10 +69,21 @@ switch ($_GET['action']) {
 
 <head>
     <title>Commit TLL - CBD</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-    <p>Thanks for your submission.</p>
+    <div class="content">
+        <div class="innerbox">
+            <h2 style="text-align: center;">Thanks for your submission!</h2>
+            <h3 style="text-align: center;">Please click the "Return" button to return to the search page.</h3>
+            <div align="center" style="padding-top: 10px;">
+                <input name="return" type="button" id="cbutton" value="Return" onclick="window.open('Submission.php', '_self')">
+            </div>
+        </div>
+    </div>
 </body>
 <?php
 error_reporting(E_ALL ^ E_DEPRECATED);

@@ -66,12 +66,12 @@
                         
                         <label>
                             <span>Biomarker Name* :</span>
-                            <input id="submit" type="text" name="biomarker" placeholder="Name of your biomarker" required>
+                            <input id="submit" type="text" name="Biomarker" placeholder="Name of your biomarker" required>
                         </label>
                         
                         <label>
                             <span>Biological Category* :</span>
-                            <input id="submit" type="text" list="categorylist" placeholder="Select or type the category" required>
+                            <input id="submit" type="text" name="Category" list="categorylist" placeholder="Select or type the category" required>
                             <datalist id="categorylist">
                                 <option>Protein</option>
                 				<option>RNA</option>
@@ -86,7 +86,7 @@
                         
                         <label>
                             <span>Biomarker Type* :</span>
-                            <select id="submit" name="Type" style="color: #888" onchange="color()" required>
+                            <select id="submit" name="Application" style="color: #888" onchange="color()" required>
                                 <option value="">Select the useage</option>
                                 <option value="Diagnosis">Diagnosis</option>
                                 <option value="Diagnosis, Prognosis">Diagnosis, Prognosis</option>
@@ -110,7 +110,7 @@
                         
                         <label>
                             <span>Your Name* :</span>
-                            <input id="submit" type="text" name="contributor" placeholder="Enter your name" required>
+                            <input id="submit" type="text" name="Contributor" placeholder="Enter your name" required>
                         </label>
                         
                         <label>
@@ -120,7 +120,7 @@
                         
                         <label>
                             <span>Your E-mail* :</span>
-                            <input id="submit" type="email" name="email" placeholder="Your E-mail to contact" required>
+                            <input id="submit" type="email" name="Email" placeholder="Your E-mail to contact" required>
                         </label>
                         
                         <label>
