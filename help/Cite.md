@@ -1,4 +1,6 @@
-# How to cite
+# <i class="fa-solid fa-quote-left"></i> How to Cite
+
+---
 
 If you find CBD useful, cite:
 

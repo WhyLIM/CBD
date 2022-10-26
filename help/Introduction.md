@@ -1,3 +1,7 @@
+# <i class="fa-regular fa-file-lines"></i> Introduction
+
+---
+
 > <i class="fa fa-quote-left fa-3x fa-pull-left"></i>
 > Colorectal cancer (CRC), also known as bowel cancer and colon cancer, is the development of cancer from the colon or rectum (parts of the large intestine). A cancer is the abnormal growth of cells that have the ability to invade or spread to other parts of the body. Signs and symptoms may include blood in the stool, a change in bowel movements, weight loss, and feeling tired all the time.
 >

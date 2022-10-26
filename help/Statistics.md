@@ -1,3 +1,7 @@
+# <i class="fa-solid fa-chart-simple"></i> Data Collection and Statistics
+
+---
+
 All of the biomarkers and their information included in CBD are collected from PubMed database with the key words: (((((biomarker [Title/Abstract]) OR marker [Title/Abstract]) OR indicator [Title/Abstract]) OR predictor [Title/Abstract])) AND ((((((colorectal cancer [Title/Abstract]) OR rectal cancer [Title/Abstract]) OR bowel cancer [Title/Abstract])))). Figure 3 shows the procedure of data collection.
 
 ![Figure 3. Data collection procedure](https://cbd.limina.top/images/old/source.png "Figure 3. Data collection procedure")

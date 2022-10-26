@@ -1,4 +1,6 @@
-# Help Center
+# <i class="fa-regular fa-circle-question"></i> Help Center
+
+---
 
 The help contains an introduction to CBD's data and information for how to use CBD's website. Please read it and check frequently asked questions before requesting support.
 

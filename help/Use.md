@@ -1,3 +1,7 @@
+# <i class="fa-solid fa-signs-post"></i> How to Use
+
+---
+
 ## How to Search
 
 We offer users three different ways to retrieve data: Categorical Search, Keyword Search, and Advanced Search. Each search strategy returns results with detailed information about the corresponding biomarker.

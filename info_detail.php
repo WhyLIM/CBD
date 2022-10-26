@@ -9,7 +9,7 @@
     <link href="style.css" rel="stylesheet" type="text/css">
     <!-- Font Awesome 矢量图标 -->
     <!--<script src="https://use.fontawesome.com/bf6f75a73f.js"></script>-->
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.2/css/all.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     <!--String API-->
     <script type="text/javascript" src="https://string-db.org/javascript/combined_embedded_network_v2.0.4.js"></script>
     <script>

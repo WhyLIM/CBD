@@ -1,3 +1,7 @@
+# <i class="fa-solid fa-microscope"></i> Data Analysis
+
+---
+
 We selected all the protein biomarkers inside our database to make deeper bioinformatics analysis in order to explore the biological function and connection in molecule, cell, pathway level. Table 1 shows the Gene ontology(GO) analysis result. Table 2 shows the pathway enrichment analysis result, and from which we selected the top 2 pathway into figure 19 and figure 20. All these works were made by DAVID (https://david.ncifcrf.gov/).
 
 We also used the protein-protein interaction network to study the connection and relationship between different protein biomarkers. Figure 21 presents the PPI network for all the protein biomarkers, which was made by String(https://string-db.org/).
