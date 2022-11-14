@@ -8,8 +8,9 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link href="style.css" rel="stylesheet" type="text/css">
     <!-- Font Awesome 矢量图标 -->
-    <!--<script src="https://use.fontawesome.com/bf6f75a73f.js"></script>-->
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <!-- Roboto 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script>
         function color() {
             var select = document.querySelectorAll("select");
@@ -20,6 +21,24 @@
                    item.style.color = "";
                }
             });
+        }
+        
+        function foothelp(e) {
+            if (e.id == "Use") {
+                var frameurl = "help/index.html#/Use";
+            } else if (e.id == "Cite") {
+                var frameurl = "help/index.html#/Cite";
+            } else if (e.id == "Updatelog") {
+                var frameurl = "help/index.html#/Updatelog";
+            } else if (e.id == "Home") {
+                var frameurl = "help/index.html#/";
+            }
+            // alert(frameurl);
+            // 在 _self 打开获取不了 newwindow
+            var newwindow = window.open('About.html');
+            newwindow.onload = function() {
+                newwindow.document.getElementsByClassName('f_content')['f_content']['src'] = frameurl;
+            }
         }
     </script>
 </head>
@@ -202,6 +221,76 @@
                 </div>
             </div>
         </div>
+        
+        <div class="footer">
+            <div class="innerbox">
+                <div class="footer-left">
+                    <h2 style="color: #d6d6d6;font-family: 'Roboto',sans-serif;font-size: 22px;">&copy; CBD2 2018-2022</h2>
+                    <ul>
+                        <li id="liu-logo">
+                            <a href="https://liu.se/en" target="_blank"><img src="images/liu.png" style="vertical-align:middle;"></a>
+                        </li>
+                        <li id="suda-logo">
+                            <a href="http://www.suda.edu.cn/" target="_blank"><img src="images/suda.png" style="vertical-align:middle;margin-left: -8px;"></a>
+                        </li>
+                        <li id="gdph-logo">
+                            <a href="https://www.gdghospital.org.cn/" target="_blank"><img src="images/gdph.png" style="vertical-align:middle;margin-left: -5px;margin-top: -5px;"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-right">
+                    <h2 style="color: #d6d6d6;font-family: 'Roboto',sans-serif;font-size: 22px;">Links</h2>
+                    <ul>
+                        <li>
+                            <a href="https://liu.se/en" target="_blank">Linköping University</a>
+                        </li>
+                        <li>
+                            <a href="http://www.suda.edu.cn/" target="_blank">Soochow University</a>
+                        </li>
+                        <li>
+                            <a href="https://www.gdghospital.org.cn/" target="_blank">Guangdong Provincial People's Hospital</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/WhyLIM/CBD" target="_blank">Open Source</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-right">
+                    <h2 style="color: #d6d6d6;font-family: 'Roboto',sans-serif;font-size: 22px;">Help</h2>
+                    <ul>
+                        <li>
+                            <a id="Use" onclick="javascript:foothelp(this); return false;" href="#">How to Use</a>
+                        </li>
+                        <li>
+                            <a id="Cite" onclick="javascript:foothelp(this); return false;" href="#">Reference</a>
+                        </li>
+                        <li>
+                            <a id="Updatelog" onclick="javascript:foothelp(this); return false;" href="#">Updatelog</a>
+                        </li>
+                        <li>
+                            <a id="Home" onclick="javascript:foothelp(this); return false;" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-right">
+                    <h2 style="color: #d6d6d6;font-family: 'Roboto',sans-serif;font-size: 22px;">Support</h2>
+                    <ul>
+                        <li>
+                            <a href="https://fontawesome.com/" target="_blank">Icon</a>
+                        </li>
+                        <li>
+                            <a href="https://docsify.js.org/#/" target="_blank">Document</a>
+                        </li>
+                        <li>
+                            <a href="https://string-db.org/cgi/help?sessionId=bshQSgoux29C" target="_blank">APIs</a>
+                        </li>
+                        <li>
+                            <a>Researchers Worldwide</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script language="javascript">
@@ -284,28 +373,6 @@
             }
         }
     </script>
-    
-    <table height="90" cellspacing="0" cellpadding="0" class="footer">
-        <tbody>
-            <tr>
-                <td style="text-align:center;vertical-align:middle;">
-                    <div class="innerbox">
-                        <p style="text-align: center;margin-top: 20px;">
-                            <a href="http://www.suda.edu.cn/" target="_blank"><img src="images/suda.png" style="vertical-align:middle;"></a>
-                            <a style="font-size: 30px;color: white;vertical-align: -5px;"> | </a>
-                            <a href="https://www.gdghospital.org.cn/" target="_blank"><img src="images/gdph.png" style="vertical-align:middle;"></a>
-                        </p>
-                        <p style="text-align: center;">
-                            <a style="color: white">Copyright &copy; 2018-2022 Colorectal Cancer Biomarker Database (CBD)</a><br>
-                            <a href="http://sysbio.suda.edu.cn/" target="_blank" style="color:white;text-decoration:none;">Center for Systems Biology, Soochow University</a><a style="color: white"> | </a>
-                            <a href="https://www.gdghospital.org.cn/" target="_blank" style="color:white;text-decoration:none;">Guangdong Provincial People's Hospital</a><br>
-                            <a style="color: white">All Rights Reserved.</a>
-                        </p>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 
 </body>
 

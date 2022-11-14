@@ -7,10 +7,15 @@
 - [ ] Add an automatic email reply system for submitter.
 - [ ] Filter and download functions of the "Explore" page.
 
+## <i class="fa-regular fa-calendar-check"></i> November, 2022
+
+- [x] Redesigned the footer.
+- [x] Normalized the data format in the database.
+
 ## <i class="fa-regular fa-calendar-check"></i> October, 2022
 
 - [x] Fixed the commit feature.
-- [x] Normalize the data format in the database.
+- [x] Normalized the data format in the database.
 
 ## <i class="fa-regular fa-calendar-check"></i> September, 2022
 
@@ -19,17 +24,17 @@
 
 ## <i class="fa-regular fa-calendar-check"></i> August, 2022
 
-- [x] Redesign the "Explore" page.
-- [x] Add Network Analysis base upon STRING API.
-- [x] Add "Explore" page.
-- [x] Rewrite a detailed help documentation.
-- [x] Update some of the charts in CBD.
-- [x] Rewrite the index page.
+- [x] Redesigned the "Explore" page.
+- [x] Added Network Analysis base upon STRING API.
+- [x] Added "Explore" page.
+- [x] Rewrote a detailed help documentation.
+- [x] Updated some of the charts in CBD.
+- [x] Rewrote the index page.
 
 ## <i class="fa-regular fa-calendar-check"></i> July, 2022
 
-- [x] Redesign the UI and layout of CBD.
-- [x] Rewrite most of the code using HTML5 specification.
+- [x] Redesigned the UI and layout of CBD.
+- [x] Rewrote most of the code using HTML5 specification.
 
 ## <i class="fa-regular fa-calendar-check"></i> May, 2018
 
