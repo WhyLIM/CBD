@@ -25,7 +25,7 @@
             <div class="header_resize">
                 <div class="logo">
                     <div class="innerbox">
-                        <h1><a href="index.html">CBD: <br>
+                        <h1><a href="index.html">CBD2: <br>
                                 Colorectal Cancer Biomarker Database</a></h1>
                     </div>
                 </div>
@@ -47,8 +47,8 @@
         <?php
         /* Report all errors except E_NOTICE */
         error_reporting(E_ALL ^ E_NOTICE);
-        //connect to MySQL
-        $con = mysqli_connect('localhost', 'guest', 'guest_cbd', 'cbd_limina_top');
+        // connect to MySQL
+        $con = mysqli_connect('localhost', 'user', 'password', 'database');
         if (!$con) {
             die("Fail to connect MySQL: " . mysqli_connect_errno());
         }
@@ -63,12 +63,13 @@
         $q7 = $_GET["id7"];
         $q8 = $_GET["id8"];
         
+        // Region 模糊匹配
         if ($q1 != "") {
             $sql11 = " (Region like '%" . $q1 . "%') ";
         } else {
             $sql11 = "";
         }
-        
+        // Stage 精确匹配
         if ($q2 != "") {
             if ($q1 == "") {
                 $sql22 = " (Stage rlike '^" . $q2 . "$') ";
@@ -78,7 +79,7 @@
         } else {
             $sql22 = "";
         }
-        
+        // Location 精确匹配
         if ($q3 != "") {
             if ($q1 == "" && $q2 == "") {
                 $sql33 = " (Location rlike '^" . $q3 . "$') ";
@@ -88,7 +89,7 @@
         } else {
             $sql33 = "";
         }
-        
+        // Source 精确匹配
         if ($q4 != "") {
             if ($q1 == "" && $q2 == "" && $q3 == "") {
                 $sql44 = " (Source rlike '^" . $q4 . "$') ";
@@ -98,7 +99,7 @@
         } else {
             $sql44 = "";
         }
-        
+        // Application 精确匹配
         if ($q5 != "") {
             if ($q1 == "" && $q2 == "" && $q3 == "" && $q4 == "") {
                 $sql55 = " (Application rlike '^" . $q5 . "$') ";
@@ -108,32 +109,32 @@
         } else {
             $sql55 = "";
         }
-        
+        // First author 精确匹配
         if ($q6 != "") {
             if ($q1 == "" && $q2 == "" && $q3 == "" && $q4 == "" && $q5 == "") {
-                $sql66 = " (Reference_first_author like '%" . $q6 . "%') ";
+                $sql66 = " (Reference_first_author rlike '^" . $q6 . "$') ";
             } else {
-                $sql66 = " and (Reference_first_author like '%" . $q6 . "%') ";
+                $sql66 = " and (Reference_first_author rlike '^" . $q6 . "$') ";
             }
         } else {
             $sql66 = "";
         }
-        
+        // Journal 精确匹配
         if ($q7 != "") {
             if ($q1 == "" && $q2 == "" && $q3 == "" && $q4 == "" && $q5 == "" && $q6 == "") {
-                $sql77 = " (Reference_journal like '%" . $q7 . "%') ";
+                $sql77 = " (Reference_journal rlike '^" . $q7 . "$') ";
             } else {
-                $sql77 = " and (Reference_journal like '%" . $q7 . "%') ";
+                $sql77 = " and (Reference_journal rlike '^" . $q7 . "$') ";
             }
         } else {
             $sql77 = "";
         }
-        
+        // Year 精确匹配
         if ($q8 != "") {
             if ($q1 == "" && $q2 == "" && $q3 == "" && $q4 == "" && $q5 == "" && $q6 == "" && $q7 == "") {
-                $sql88 = " (Reference_year like '%" . $q8 . "%') ";
+                $sql88 = " (Reference_year rlike '^" . $q8 . "$') ";
             } else {
-                $sql88 = " and (Reference_year like '%" . $q8 . "%') ";
+                $sql88 = " and (Reference_year rlike '^" . $q8 . "$') ";
             }
         } else {
             $sql88 = "";

@@ -17,7 +17,7 @@
 
 <body>
     <?php
-    $con = mysqli_connect('localhost', 'guest', 'guest_cbd', 'cbd_limina_top');
+    $con = mysqli_connect('localhost', 'user', 'password', 'database');
     if (!$con) {
         die("Fail to connect MySQL: " . mysqli_connect_errno());
     }

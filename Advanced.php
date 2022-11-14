@@ -30,7 +30,7 @@
             <div class="header_resize">
                 <div class="logo">
                     <div class="innerbox">
-                        <h1><a href="index.html">CBD: <br>
+                        <h1><a href="index.html">CBD2: <br>
                                 Colorectal Cancer Biomarker Database</a></h1>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
         </div>
         
         <?php
-        $con = mysqli_connect('localhost', 'guest', 'guest_cbd', 'cbd_limina_top');
+        $con = mysqli_connect('localhost', 'user', 'password', 'database');
         if (!$con) {
             die("Fail to connect MySQL: " . mysqli_connect_errno());
         }
@@ -101,7 +101,7 @@
                             <span>Please fill out at least one item.</span>
                         </h2>
                         
-                        <!--第 1 个检索 -->
+                        <!-- 第 1 个检索 -->
                         <label>
                             <span>Region :</span>
                             <input type="text" name="searchinput1" id="searchinput1" list="regionlist" placeholder="Select or type region of research">
@@ -113,7 +113,7 @@
                             </datalist>
                         </label>
                         
-                        <!--第 2 个检索 -->
+                        <!-- 第 2 个检索 -->
                         <label>
                             <span>Stage :</span>
                             <select name="searchinput2" id="searchinput2" style="color: #888" onchange="color()">
@@ -125,7 +125,7 @@
                             </select>
                         </label>
                         
-                        <!--第 3 个检索 -->
+                        <!-- 第 3 个检索 -->
                         <label>
                             <span>Location :</span>
                             <select name="searchinput3" id="searchinput3" style="color: #888" onchange="color()">
@@ -134,13 +134,10 @@
                                 foreach ($location as $lo) {
                                    echo "<option value='" . $lo . "'>" . $lo . "</option>";
                                 } ?>
-                                <!--<option value="Colon">Colon</option>-->
-                                <!--<option value="Rectum">Rectum</option>-->
-                                <!--<option value="Colon, Rectum">Colon, Rectum</option>-->
                             </select>
                         </label>
                         
-                        <!--第 4 个检索 -->
+                        <!-- 第 4 个检索 -->
                         <label>
                             <span>Source :</span>
                             <select name="searchinput4" id="searchinput4" style="color: #888" onchange="color()">
@@ -152,7 +149,7 @@
                             </select>
                         </label>
                         
-                        <!--第 5 个检索 -->
+                        <!-- 第 5 个检索 -->
                         <label>
                             <span>Application :</span>
                             <select name="searchinput5" id="searchinput5" style="color: #888" onchange="color()">
@@ -164,9 +161,9 @@
                             </select>
                         </label>
                         
-                        <!--第 6-8 个检索 -->
+                        <!-- 第 6-8 个检索 -->
                         <label>
-                            <!--First Author-->
+                            <!-- First Author -->
                             <span>Reference (First Author) :</span>
                             <input type="text" name="searchinput6" id="searchinput6" list="falist" placeholder="Select or type first author">
                             <datalist id="falist">
@@ -176,7 +173,7 @@
                                 } ?>
                             </datalist>
                             
-                            <!--Journal-->
+                            <!-- Journal -->
                             <span>Reference (Journal) :</span>
                             <input type="text" name="searchinput7" id="searchinput7" list="jlist" placeholder="Select or type Journal">
                             <datalist id="jlist">
@@ -186,7 +183,7 @@
                                 } ?>
                             </datalist>
                             
-                            <!--Year-->
+                            <!-- Year -->
                             <span>Reference (Year) :</span>
                             <input type="text" name="searchinput8" id="searchinput8" list="ylist" placeholder="Select or type publication year">
                             <datalist id="ylist">
@@ -197,7 +194,7 @@
                             </datalist>
                         </label>
                         
-                        <!--search 键 -->
+                        <!-- search 键 -->
                         <div align="center" style="padding-top: 10px;">
                             <input name="submit" type="submit" id="cbutton" value="Search" onclick="searchexc()">
                         </div>
@@ -224,54 +221,54 @@
             var searchinput7 = document.getElementById("searchinput7").value;
             var searchinput8 = document.getElementById("searchinput8").value;
             var url = "info_adv.php?";
-            // 1
+            // Region
             if (searchinput1 != "") {
                 if (url.substr(-1) == "?")
                     url += "id1=" + searchinput1;
             }
-            // 2	
+            // Stage
             if (searchinput2 != "") {
                 if (url.substr(-1) == "?")
                     url += "id2=" + searchinput2;
                 else
                     url += "&id2=" + searchinput2;
             }
-            // 3
+            // Location
             if (searchinput3 != "") {
                 if (url.substr(-1) == "?")
                     url += "id3=" + searchinput3;
                 else
                     url += "&id3=" + searchinput3;
             }
-            // 4
+            // Source
             if (searchinput4 != "") {
                 if (url.substr(-1) == "?")
                     url += "id4=" + searchinput4;
                 else
                     url += "&id4=" + searchinput4;
             }
-            // 5
+            // Application
             if (searchinput5 != "") {
                 if (url.substr(-1) == "?")
                     url += "id5=" + searchinput5;
                 else
                     url += "&id5=" + searchinput5;
             }
-            // 6
+            // First Author
             if (searchinput6 != "") {
                 if (url.substr(-1) == "?")
                     url += "id6=" + searchinput6;
                 else
                     url += "&id6=" + searchinput6;
             }
-            // 7
+            // Journal
             if (searchinput7 != "") {
                 if (url.substr(-1) == "?")
                     url += "id7=" + searchinput7;
                 else
                     url += "&id7=" + searchinput7;
             }
-            // 8
+            // Year
             if (searchinput8 != "") {
                 if (url.substr(-1) == "?")
                     url += "id8=" + searchinput8;

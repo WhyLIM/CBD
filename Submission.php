@@ -30,7 +30,7 @@
             <div class="header_resize">
                 <div class="logo">
                     <div class="innerbox">
-                        <h1><a href="index.html">CBD: <br>
+                        <h1><a href="index.html">CBD2: <br>
                                 Colorectal Cancer Biomarker Database</a></h1>
                     </div>
                 </div>
