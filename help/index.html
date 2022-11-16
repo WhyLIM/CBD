@@ -38,6 +38,13 @@
             scrollbar-track-color: red;
             scrollbar-arrow-color: blue;
         }
+        
+        .markdown-section ol,
+        .markdown-section ul,
+        .markdown-section p {
+            padding-left: 0;
+            text-align: justify;
+        }
     </style>
 </head>
 
@@ -71,7 +78,7 @@
                 function(hook) {
                     var footer = [
                         '<footer>',
-                        '<p style="text-align: right;">Copyright &copy; 2018-2022 Colorectal Cancer Biomarker Database (CBD),<br>Soochow University, Guangdong Provincial People\'s Hospital.<br>All Rights Reserved. Published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</p>',
+                        '<p style="text-align: right;">Copyright &copy; 2018-2022 Colorectal Cancer Biomarker Database (CBD),<br>Linköping University, Soochow University, Guangdong Provincial People\'s Hospital.<br>All Rights Reserved. Published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</p>',
                         '</footer>'
                     ].join('');
                     hook.afterEach(function(html) {
