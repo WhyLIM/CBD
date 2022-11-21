@@ -153,7 +153,7 @@
                             <td style="vertical-align: top;" width="27%">
                             <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
                                 <div style="float: top;">
-                                    <p style="width: 360px;"><b>Note: </b>The list on the left is the biomarkers with String Name recorded in CBD. You can select any of them, and then they will be displayed in the text box on the right. Of course, in the text box, you can also manually type the protein you want to query.</p>
+                                    <p style="width: 95%;margin: 0 auto;"><b>Note: </b>The list on the left is the biomarkers with String Name recorded in CBD. You can select any of them, and then they will be displayed in the text box on the right. Of course, in the text box, you can also manually type the protein you want to query.</p>
                                 </div>
                                 
                                 <?php
