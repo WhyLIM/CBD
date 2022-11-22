@@ -184,7 +184,7 @@
                             <a href="https://www.gdghospital.org.cn/" target="_blank">Guangdong Provincial People's Hospital</a>
                         </li>
                         <li>
-                            <a href="https://github.com/WhyLIM/CBD" target="_blank">Open Source</a>
+                            <i class="fa-brands fa-github"></i>&nbsp;&nbsp;<a href="https://github.com/WhyLIM/CBD" target="_blank">Open Source</a>
                         </li>
                     </ul>
                 </div>

@@ -6,5 +6,6 @@
 * [Data Analysis](Analysis.md)
 * [Items in CBD](Items.md)
 * [How to Use](Use.md)
+* [FAQ](FAQ.md)
 * [Reference](Cite.md)
 * [Updatelog](Updatelog.md)
