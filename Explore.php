@@ -508,7 +508,7 @@ EOD;
                                     $urlhead = 'https://string-db.org/api/json/network?identifiers=';
                                     $url = $urlhead . $proteins . $parameters;
                                     // echo $url;
-                                    $command = "C:\Miniconda3\python.exe scripts\compute.py " . $url;
+                                    $command = "/home/anaconda3/bin/python3.9 scripts/compute.py " . $url;
                                     // echo $command;
                                     $table = "";
                                     exec($command, $output);
