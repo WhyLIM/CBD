@@ -7,7 +7,7 @@ Here are descriptions for the items in CBD.
 | Items        | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | ID           | Biomarker ID in the database                                 |
-| Biomarker    | Name of biomarker                                            |
+| Name         | Name of (non-)biomarker                                            |
 | Category     | Biological type of biomarker (e.g. Protein, DNA)             |
 | NCBI Protein | Protein information in [National Center for Biotechnology Information (NCBI)](https://www.ncbi.nlm.nih.gov/) |
 | Description  | Description of biomarker                                     |
@@ -27,5 +27,7 @@ Here are descriptions for the items in CBD.
 | PMID         | [PubMed](https://pubmed.ncbi.nlm.nih.gov/) ID of research    |
 | STRING Name  | Name of the protein in the [STRING database](https://string-db.org/) (If available) |
 | STRING PPI   | Show the protein-protein interaction (PPI) network of this protein with other proteins with top 10 confidence scores (If STRING name is available) |
+| Know Target  | Whether the current biomarker is a documented target in DrugBank |
+| Drugs        | Drugs on the target that have been recorded in DrugBank (If any) |
 | Addition     | Note by us                                                   |
 

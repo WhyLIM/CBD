@@ -50,9 +50,13 @@
                 </div>
                 <div class="menu_nav">
                     <div class="innerbox">
-                        <ul>
+                        <ul class="menu">
                             <li><a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
-                            <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a></li>
+                            <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a>
+                            <ul class="submenu">
+                                <li><a href="NBiomarkers.php">Non-Biomarkers</a></li>
+                            </ul>
+                            </li>
                             <li><a href="Submission.php"><i class="fa fa-upload"></i>&nbsp;&nbsp;Submission</a></li>
                             <li><a href="Download.html"><i class="fa fa-cloud-download"></i>&nbsp;&nbsp;Download</a></li>
                             <li><a href="Explore.php"><i class="fa fa-flask"></i>&nbsp;&nbsp;Explore</a></li>
@@ -67,7 +71,7 @@
         /* Report all errors except E_NOTICE */
         error_reporting(E_ALL ^ E_NOTICE);
         // connect to MySQL
-        $con = mysqli_connect('localhost', 'user', 'password', 'database');
+        $con = mysqli_connect('localhost', 'guest', 'guest_cbd', 'cbd_limina_top');
         if (!$con) {
             die("Fail to connect MySQL: " . mysqli_connect_errno());
         }

@@ -17,7 +17,7 @@
 
 <body>
     <?php
-    $con = mysqli_connect('localhost', 'user', 'password', 'database');
+    $con = mysqli_connect('localhost', 'guest', 'guest_cbd', 'cbd_limina_top');
     if (!$con) {
         die("Fail to connect MySQL: " . mysqli_connect_errno());
     }
@@ -26,7 +26,7 @@
           ID, Biomarker, Location, Application, Reference_first_author, Reference_journal, Reference_year 
           FROM
           biomarker
-		  WHERE Category="DNA"
+		  WHERE Category LIKE "%DNA%"
           ORDER BY 
           ID ASC';
     $result = mysqli_query($con, $query);

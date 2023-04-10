@@ -50,9 +50,13 @@
                 </div>
                 <div class="menu_nav">
                     <div class="innerbox">
-                        <ul>
+                        <ul class="menu">
                             <li><a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
-                            <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a></li>
+                            <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a>
+                            <ul class="submenu">
+                                <li><a href="NBiomarkers.php">Non-Biomarkers</a></li>
+                            </ul>
+                            </li>
                             <li><a href="Submission.php"><i class="fa fa-upload"></i>&nbsp;&nbsp;Submission</a></li>
                             <li><a href="Download.html"><i class="fa fa-cloud-download"></i>&nbsp;&nbsp;Download</a></li>
                             <li><a href="Explore.php"><i class="fa fa-flask"></i>&nbsp;&nbsp;Explore</a></li>
@@ -65,7 +69,7 @@
         
         <?php
         //connect to MySQL
-        $con = mysqli_connect('localhost', 'user', 'password', 'database');
+        $con = mysqli_connect('localhost', 'guest', 'guest_cbd', 'cbd_limina_top');
         if (!$con) {
             die("Fail to connect MySQL: " . mysqli_connect_errno());
         }
@@ -73,19 +77,29 @@
 
         $ida = $_GET['id'];
         // retrieve information 
-        $query = 'SELECT 
-          ID, Biomarker, Category, Location, Application, Reference_first_author, Reference_journal, Reference_year 
-          FROM
-          biomarker
-          WHERE Biomarker like "%' . $ida . '%" 
-          ORDER BY 
-          ID ASC';
-        $result = mysqli_query($con, $query);
-
-        // determine number of rows in returned result
-        $biomarker = mysqli_num_rows($result);
+        $query1 = 'SELECT 
+                   ID, Biomarker, Category, Location, Application, Reference_first_author, Reference_journal, Reference_year 
+                   FROM 
+                   biomarker 
+                   WHERE Biomarker like "%' . $ida . '%" 
+                   ORDER BY 
+                   ID ASC';
+        $result1 = mysqli_query($con, $query1);
         
-        if (mysqli_num_rows($result) < 1) { ?>
+        $query2 = 'SELECT 
+                   ID, Biomarker, Application, Reference_first_author, Reference_year 
+                   FROM 
+                   `non-biomarker` 
+                   WHERE Biomarker like "%' . $ida . '%" 
+                   ORDER BY 
+                   ID ASC';
+        $result2 = mysqli_query($con, $query2);
+        
+        // determine number of rows in returned result
+        $biomarker = mysqli_num_rows($result1);
+        $nbiomarker = mysqli_num_rows($result2);
+        
+        if (mysqli_num_rows($result1) + mysqli_num_rows($result2) < 1) { ?>
         <div class="content">
             <div class="content_resize_b">
                 <h2 style="text-align: center;">No Results Found</h2>
@@ -114,7 +128,7 @@
                     <tbody>
                     <?php
                     // loop through the results
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($result1)) {
                         extract($row); ?>
                         <tr onclick="change(this.id)" style="cursor:pointer;" id='<?php echo $ID ?>'>
                             <?php
@@ -129,6 +143,37 @@
                         } ?>
                     </tbody>
                 </table>
+                
+                <p></p>
+                
+                <p style="text-align: center;"><?php echo $nbiomarker; ?> Non-biomarkers</p>
+                <table class="tab">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Biomarker</th>
+                            <th>Application</th>
+                            <th>Reference</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                    <?php
+                    // loop through the results
+                    while ($row = mysqli_fetch_assoc($result2)) {
+                        extract($row); ?>
+                        <tr id='<?php echo $ID ?>'>
+                            <?php
+                            echo '<td>' . $ID . '</td>';
+                            echo '<td>' . $Biomarker . '</td>';
+                            echo '<td>' . $Application . '</td>';
+                            echo '<td>' . $Reference_first_author . '. ' . $Reference_year . '</td>';
+                            ?>
+                        </tr> <?php
+                    } ?>
+                    </tbody>
+                </table>
+                
         <?php
         } ?>
             </div>

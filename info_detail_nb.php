@@ -46,9 +46,13 @@
                 </div>
                 <div class="menu_nav">
                     <div class="innerbox">
-                        <ul>
+                        <ul class="menu">
                             <li><a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
-                            <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a></li>
+                            <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a>
+                            <ul class="submenu">
+                                <li><a href="NBiomarkers.php">Non-Biomarkers</a></li>
+                            </ul>
+                            </li>
                             <li><a href="Submission.php"><i class="fa fa-upload"></i>&nbsp;&nbsp;Submission</a></li>
                             <li><a href="Download.html"><i class="fa fa-cloud-download"></i>&nbsp;&nbsp;Download</a></li>
                             <li><a href="Explore.php"><i class="fa fa-flask"></i>&nbsp;&nbsp;Explore</a></li>
@@ -64,7 +68,7 @@
                 
                 <?php
                 //connect to MySQL
-                $con = mysqli_connect('localhost', 'user', 'password', 'database');
+                $con = mysqli_connect('localhost', 'guest', 'guest_cbd', 'cbd_limina_top');
                 if (!$con) {
                     die("Fail to connect MySQL: " . mysqli_connect_errno());
                 }
@@ -98,13 +102,13 @@
                     <tbody>
                     <?php
                     echo '<tr><td width="15%">ID</td><td>' . $row[0] . '</td></tr>';
-                    echo '<tr><td>Biomarker</td><td>' . $row[1] . '</td></tr>';
+                    echo '<tr><td>Name</td><td>' . $row[1] . '</td></tr>';
                     
                     $symbols = explode(", ", $row[1]);
                     
                     echo '<tr><td>Application</td><td>' . $row[2] . '</td></tr>';
                     echo '<tr><td>Reference</td><td>' . $row[3] . '. ' . $row[4] . '</td></tr>';
-                    echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[5] . '" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[5] . ' (Click to Pubmed)</a></td></tr>';
+                    echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[5] . '" target="_black" style="color:#20558a;font-weight:bold;"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[5] . ' (Click to PubMed)</a></td></tr>';
                     ?>
                     </tbody>
                 </table>

@@ -56,9 +56,13 @@
                 </div>
                 <div class="menu_nav">
                     <div class="innerbox">
-                        <ul>
+                        <ul class="menu">
                             <li><a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
-                            <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a></li>
+                            <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a>
+                            <ul class="submenu">
+                                <li><a href="NBiomarkers.php">Non-Biomarkers</a></li>
+                            </ul>
+                            </li>
                             <li><a href="Submission.php"><i class="fa fa-upload"></i>&nbsp;&nbsp;Submission</a></li>
                             <li><a href="Download.html"><i class="fa fa-cloud-download"></i>&nbsp;&nbsp;Download</a></li>
                             <li><a href="Explore.php"><i class="fa fa-flask"></i>&nbsp;&nbsp;Explore</a></li>
@@ -74,7 +78,7 @@
                 
                 <?php
                 //connect to MySQL
-                $con = mysqli_connect('localhost', 'user', 'password', 'database');
+                $con = mysqli_connect('localhost', 'guest', 'guest_cbd', 'cbd_limina_top');
                 if (!$con) {
                     die("Fail to connect MySQL: " . mysqli_connect_errno());
                 }
@@ -84,7 +88,7 @@
                       ID, Biomarker, Category, Discription, Region, Race, Number, `Gender_M/F`, Age, 
                       Location, Stage, Source, Experiment, Statictics, Application, Conclusion, 
                       Reference_first_author, Reference_journal, Reference_year, PMID, Addition, 
-                      STRING_Name, STRING_ID, STRING_Link, Male, Female, Age_Mean
+                      STRING_Name, STRING_ID, STRING_Link, Male, Female, Age_Mean, Target, Drugs
                       FROM 
                       biomarker
                       where ID="' . $id . '"';
@@ -117,7 +121,7 @@
                     // loop through the results: ID, Biomarker, Category, Discription, Region, Race, Number, Gender, Age, 
                     // Location, Stage, Source, Experiment, Statictics, Reference, Application, Conclusion, PMID, Addition
                     echo '<tr><td width="15%">ID</td><td>' . $row[0] . '</td></tr>';
-                    echo '<tr><td>Biomarker</td><td>' . $row[1] . '</td></tr>';
+                    echo '<tr><td>Name</td><td>' . $row[1] . '</td></tr>';
                     echo '<tr><td>Category</td><td>' . $row[2] . '</td></tr>';
                     
                     $symbols = explode(", ", $row[1]);
@@ -126,9 +130,9 @@
                         // Protein
                         // print_r($row);
                         echo '<tr><td>NCBI Protein</td><td>';
-                        echo '<a href="https://www.ncbi.nlm.nih.gov/protein/?term=' . $symbols[0] . '+AND+Homo+sapiens[Organism]" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $symbols[0] . ' (Click to NCBI Protein)</a>';
+                        echo '<a href="https://www.ncbi.nlm.nih.gov/protein/?term=' . $symbols[0] . '+AND+Homo+sapiens[Organism]" target="_black" style="color:#20558a;font-weight:bold;"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $symbols[0] . ' (Click to NCBI Protein)</a>';
                         for ($index = 1; $index < count($symbols); $index++) {
-                            echo '<br><a href="https://www.ncbi.nlm.nih.gov/protein/?term=' . $symbols[$index] . '+AND+Homo+sapiens[Organism]" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $symbols[$index] . '(Click to NCBI Protein)</a>';
+                            echo '<br><a href="https://www.ncbi.nlm.nih.gov/protein/?term=' . $symbols[$index] . '+AND+Homo+sapiens[Organism]" target="_black" style="color:#20558a;font-weight:bold;"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $symbols[$index] . '(Click to NCBI Protein)</a>';
                         }
                         echo '</td></tr>';
                         echo '<tr><td>Discription</td><td>' . $row[3] . '</td></tr>';
@@ -145,13 +149,39 @@
                         echo '<tr><td>Application</td><td>' . $row[14] . '</td></tr>';
                         echo '<tr><td>Conclusion</td><td>' . $row[15] . '</td></tr>';
                         echo '<tr><td>Reference</td><td>' . $row[16] . '. ' . $row[17] . '. '  . $row[18] . '</td></tr>';
-                        echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[19] . '" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[19] . ' (Click to Pubmed)</a></td></tr>';
+                        echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[19] . '" target="_black" style="color:#20558a;font-weight:bold;"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[19] . ' (Click to PubMed)</a></td></tr>';
                         echo "<tr><td>STRING Name</td><td>" . trim($row[21]) . "</td></tr>";
-                        echo "<tr><td>STRING PPI</td>
-                                <td><div>
-                		        <button id='Querybutton' onclick='send_request();' type='button' style='margin: 20px auto'><div><i class='fa fa-share-alt'></i>&nbsp;Show STRING PPI</div></button>
-                                </div></td>
-                              </tr>";
+                        if (trim($row[21]) == "NA") {
+                            $ppi = "None";
+                        } else {
+                            $ppi = "<div><button id='Querybutton' onclick='send_request();' type='button' style='margin: 20px auto'><div><i class='fa fa-share-alt'></i>&nbsp;Show STRING PPI</div></button></div>";
+                        }
+                        echo "<tr><td>STRING PPI</td><td>" . $ppi . "</td></tr>";
+                        if ($row[27] == 1) {
+                            $kt = "Yes";
+                        } else {
+                            $kt = "No";
+                        }
+                        echo "<tr><td>Know Target</td><td>" . $kt . "</td></tr>";
+                        
+                        $text = "";
+                        // $drugcolor = "#c42a8f";
+                        if ($row[28] == "NA") {
+                            $text = "None";
+                        } else {
+                            $dburl = "https://go.drugbank.com/drugs/";
+                            $drugs = explode(", ", $row[28]);
+                            foreach ($drugs as $drug) {
+                                $drugurl = $dburl . $drug;
+                                $drugtext = '<a href="' . $drugurl . '" target="_blank" style="color:#c42a8f;font-weight:bold;"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $drug . "</a>";
+                                if ($text == "") {
+                                    $text = $drugtext;
+                                } else {
+                                    $text = $text . ', ' . $drugtext;
+                                }
+                            }
+                        }
+                        echo "<tr><td>Drugs</td><td>" . $text . "</td></tr>";
                     } elseif (!(strpos($row[2], "Circular RNA") === false) or !(strpos($row[2], "LncRNA") === false) or !(strpos($row[2], "MicroRNA") === false) or !(strpos($row[2], "DNA") === false)) {
                         // RNA & DNA
                         echo '<tr><td>Ontology</td><td>';
@@ -174,7 +204,7 @@
                         echo '<tr><td>Application</td><td>' . $row[14] . '</td></tr>';
                         echo '<tr><td>Conclusion</td><td>' . $row[15] . '</td></tr>';
                         echo '<tr><td>Reference</td><td>' . $row[16] . '. ' . $row[17] . '. '  . $row[18] . '</td></tr>';
-                        echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[19] . '" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[19] . ' (Click to Pubmed)</a></td></tr>';
+                        echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[19] . '" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[19] . ' (Click to PubMed)</a></td></tr>';
                         echo '<tr><td>Addition</td><td>' . $row[20] . '</td></tr>';
                     } else {
                         // Other
@@ -192,7 +222,7 @@
                         echo '<tr><td>Application</td><td>' . $row[14] . '</td></tr>';
                         echo '<tr><td>Conclusion</td><td>' . $row[15] . '</td></tr>';
                         echo '<tr><td>Reference</td><td>' . $row[16] . '. ' . $row[17] . '. '  . $row[18] . '</td></tr>';
-                        echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[19] . '" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[19] . ' (Click to Pubmed)</a></td></tr>';
+                        echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[19] . '" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[19] . ' (Click to PubMed)</a></td></tr>';
                         echo '<tr><td>Addition</td><td>' . $row[20] . '</td></tr>';
                     }
                     ?>

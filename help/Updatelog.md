@@ -7,10 +7,26 @@
 - [ ] Add an automatic email reply system for submitter.
 - [ ] Filter and download functions of the "Explore" page.
 
+## <i class="fa-regular fa-calendar-check"></i> February, 2023
+
+- [x] Updated some charts in help documentation.
+- [x] Rewrote the help documentation.
+
+## <i class="fa-regular fa-calendar-check"></i> January, 2023
+
+- [x] Separated "Biomarkers" and "Non-biomarkers" pages.
+
+## <i class="fa-regular fa-calendar-check"></i> December, 2022
+
+- [x] Updated biomarkers data.
+- [x] Optimized retrieval logic.
+
 ## <i class="fa-regular fa-calendar-check"></i> November, 2022
 
 - [x] Redesigned the footer.
 - [x] Normalized the data format in the database.
+- [x] Optimized the logic of category retrieval.
+- [x] Updated some data and charts.
 
 ## <i class="fa-regular fa-calendar-check"></i> October, 2022
 
