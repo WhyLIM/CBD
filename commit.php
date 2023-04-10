@@ -50,7 +50,7 @@ switch ($_GET['action']) {
                 if (empty($Description)) {
                     $error[] = urlencode('Please enter a brief description.');
                 }
-                
+
                 if (empty($error)) {
                     $query = "INSERT INTO submission 
                     (`Biomarker`, `Category`, `Application`, `Location`, `PMID`, `Contributor`, `Email`, `Description`) 

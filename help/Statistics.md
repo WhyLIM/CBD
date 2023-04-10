@@ -2,13 +2,13 @@
 
 ---
 
-In earlier versions of CBD, all of the biomarkers and their information are collected from PubMed database with the key words: 
+In earlier versions of CBD, all of the biomarkers and their information are collected from PubMed database with the key words:
 
 ```
 (((((biomarker [Title/Abstract]) OR marker [Title/Abstract]) OR indicator [Title/Abstract]) OR predictor [Title/Abstract])) AND ((((((colorectal cancer [Title/Abstract]) OR rectal cancer [Title/Abstract]) OR bowel cancer [Title/Abstract])))).
 ```
 
-Now we have made a comprehensive update in terms of content and visual in CBD2. As shown in Figure. 2, our sorting of the articles has gone through the following steps: 
+Now we have made a comprehensive update in terms of content and visual in CBD2. As shown in Figure. 2, our sorting of the articles has gone through the following steps:
 
 1. Remove nonexperimental articles such as interview, editorial, erratum and not in English paper;
 2. Manually read the titles and abstracts of the articles to exclude results that did not fit our theme, were incomplete, and had results that were not statistically significant.
@@ -108,4 +108,3 @@ Finally we also concluded the first authors of included papers, and Figure 18 sh
 <center>
 <div class="img-caption">Figure 18. Teams with 4 or more Published Articles</div>
 </center>
-

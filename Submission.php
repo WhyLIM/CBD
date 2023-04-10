@@ -14,15 +14,15 @@
     <script>
         function color() {
             var select = document.querySelectorAll("select");
-            select.forEach(function (item) {
-               if (item.value == "") {
-                   item.style.color = "#888";
-               } else {
-                   item.style.color = "";
-               }
+            select.forEach(function(item) {
+                if (item.value == "") {
+                    item.style.color = "#888";
+                } else {
+                    item.style.color = "";
+                }
             });
         }
-        
+
         function foothelp(e) {
             if (e.id == "Use") {
                 var frameurl = "help/index.html#/Use";
@@ -58,9 +58,9 @@
                         <ul class="menu">
                             <li><a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
                             <li><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a>
-                            <ul class="submenu">
-                                <li><a href="NBiomarkers.php">Non-Biomarkers</a></li>
-                            </ul>
+                                <ul class="submenu">
+                                    <li><a href="NBiomarkers.php">Non-Biomarkers</a></li>
+                                </ul>
                             </li>
                             <li class="active"><a href="Submission.php"><i class="fa fa-upload"></i>&nbsp;&nbsp;Submission</a></li>
                             <li><a href="Download.html"><i class="fa fa-cloud-download"></i>&nbsp;&nbsp;Download</a></li>
@@ -71,42 +71,42 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="content">
             <div class="innerbox">
-                
+
                 <?php
                 if (isset($_GET['error']) && $_GET['error'] != '') {
                     echo '<div id="error">' . $_GET['error'] . '</div>';
                 }
                 ?>
-                
+
                 <form action="commit.php?action=add&type=marker" method="post" class="submission">
                     <div align="center">
                         <h2>New biomarker submission form
                             <span>Please fill all the texts in the fields.</span>
                         </h2>
-                        
+
                         <label>
                             <span>Biomarker Name* :</span>
                             <input id="submit" type="text" name="Biomarker" placeholder="Name of your biomarker" required>
                         </label>
-                        
+
                         <label>
                             <span>Biological Category* :</span>
                             <input id="submit" type="text" name="Category" list="categorylist" placeholder="Select or type the category" required>
                             <datalist id="categorylist">
                                 <option>Protein</option>
-                				<option>RNA</option>
-                				<option>CircRNA</option>
-                				<option>LncRNA</option>
-                				<option>MicroRNA</option>
-                				<option>OtherRNA</option>
+                                <option>RNA</option>
+                                <option>CircRNA</option>
+                                <option>LncRNA</option>
+                                <option>MicroRNA</option>
+                                <option>OtherRNA</option>
                                 <option>DNA</option>
                                 <option>Other</option>
                             </datalist>
                         </label>
-                        
+
                         <label>
                             <span>Biomarker Type* :</span>
                             <select id="submit" name="Application" style="color: #888" onchange="color()" required>
@@ -120,7 +120,7 @@
                                 <option value="Treatment">Treatment</option>
                             </select>
                         </label>
-                        
+
                         <label>
                             <span>Location* :</span>
                             <select id="submit" name="Location" style="color: #888" onchange="color()" required>
@@ -130,27 +130,27 @@
                                 <option value="Colon, Rectum">Colon, Rectum</option>
                             </select>
                         </label>
-                        
+
                         <label>
                             <span>Your Name* :</span>
                             <input id="submit" type="text" name="Contributor" placeholder="Enter your name" required>
                         </label>
-                        
+
                         <label>
                             <span>PubMed ID* :</span>
                             <input id="submit" type="number" name="PMID" placeholder="PMID of research for this biomarker" required min="1" max="99999999">
                         </label>
-                        
+
                         <label>
                             <span>Your E-mail* :</span>
                             <input id="submit" type="email" name="Email" placeholder="Your E-mail to contact" required>
                         </label>
-                        
+
                         <label>
                             <span>Description* :</span>
-                            <textarea id="Description"  name="Description" rows="8" placeholder="Brief description for this biomarker" required></textarea>
+                            <textarea id="Description" name="Description" rows="8" placeholder="Brief description for this biomarker" required></textarea>
                         </label>
-                        
+
                         <div align="center">
                             <input name="submit" type="submit" id="cbutton" value="Submit">
                         </div>
@@ -158,7 +158,7 @@
                 </form>
             </div>
         </div>
-        
+
         <div class="footer">
             <div class="innerbox">
                 <div class="footer-left">
@@ -229,7 +229,7 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>

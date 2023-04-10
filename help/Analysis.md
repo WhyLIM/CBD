@@ -19,4 +19,3 @@ We also used the protein-protein interaction network to study the connection and
 ![Figure 20 p53 signaling pathway](https://cbd.limina.top/images/old/p53.png)
 
 ![Figure 21 PPI network for all the included protein biomarkers](https://cbd.limina.top/images/old/ppi.png)
-

@@ -8,7 +8,9 @@ import io
 import igraph
 import zipfile
 
-def get_protein_network(identifiers, species, required_score, network_flavor, network_type, hide_disconnected_nodes):
+
+def get_protein_network(identifiers, species, required_score, network_flavor,
+                        network_type, hide_disconnected_nodes):
     # 蛋白列表
     identifiers = identifiers.split("\n")
     # 删除空值
@@ -16,8 +18,7 @@ def get_protein_network(identifiers, species, required_score, network_flavor, ne
     # split 默认单引号改双引号
     identifiers = str(identifiers).replace("'", "\"")
     # 构造 html 字符串
-    iframedoc = (
-        f"""<!DOCTYPE html>
+    iframedoc = (f"""<!DOCTYPE html>
         <html>
           <head>
             <script type="text/javascript" src="https://string-db.org/javascript/combined_embedded_network_v2.0.4.js"></script>
@@ -46,8 +47,7 @@ def get_protein_network(identifiers, species, required_score, network_flavor, ne
             <div id="stringEmbedded"></div>
           </body>
         </html>
-        """
-    )
+        """)
 
     html = f"""
     <div class="iframe-container" style="position: relative;overflow: hidden;padding-top: 56.25%">
@@ -58,9 +58,12 @@ def get_protein_network(identifiers, species, required_score, network_flavor, ne
 
     return html
 
+
 def mysql_get_protein():
     # 连接 MySQL
-    engine = create_engine('mysql+pymysql://guest:guest_cbd@47.98.184.123/cbd_limina_top', echo=True)
+    engine = create_engine(
+        'mysql+pymysql://user:userpw@ip/database',
+        echo=True)
     # 定义 SQL 语句
     query = text('''SELECT Biomarker, String_Name 
                   FROM biomarker 
@@ -76,22 +79,28 @@ def mysql_get_protein():
 
     return value_list
 
+
 def choose_protein(proteins):
     symbol = [protein.split(":")[0] for protein in proteins]
     return "\n".join(symbol)
+
 
 def get_protein_from_file(file):
     protein_df = pd.read_csv(file.name, header=None, engine='python')
     symbol = protein_df[0].tolist()
     return "\n".join(symbol)
 
+
 def clear_input():
     return None, None, None, None
+
 
 def example_proteins(key):
     application = key.split()[2]
     # 连接 MySQL
-    engine = create_engine('mysql+pymysql://guest:guest_cbd@47.98.184.123/cbd_limina_top', echo=True)
+    engine = create_engine(
+        'mysql+pymysql://user:userpw@ip/database',
+        echo=True)
     # 定义 SQL 语句
     query = text(f'''SELECT String_Name 
                    FROM biomarker 
@@ -107,6 +116,7 @@ def example_proteins(key):
 
     return value_input
 
+
 def get_network_stats(identifiers, species):
     # 获取网络参数 tsv
     identifiers = identifiers.split("\n")
@@ -120,6 +130,7 @@ def get_network_stats(identifiers, species):
     df_T = df.transpose().reset_index()
     df_T.columns = ["Parameters", "Value"]
     return df_T
+
 
 def calculate_topo(identifiers, species, required_score, network_type):
     # 获取相互作用网络 json
@@ -136,15 +147,16 @@ def calculate_topo(identifiers, species, required_score, network_type):
     edgelist = list(set(edgelist))
 
     # igraph 建立网络和计算
-    g = igraph.Graph.TupleList(edgelist, directed = False)
+    g = igraph.Graph.TupleList(edgelist, directed=False)
     symbol = g.vs["name"]
     degree = g.degree(symbol)
     betweenness = g.betweenness(symbol)
     closeness = g.closeness(symbol)
-    df = pd.DataFrame(list(zip(symbol, degree, betweenness, closeness)), 
-                              columns = ["Symbol", "Degree", "Betweenness", "Closeness"])
+    df = pd.DataFrame(list(zip(symbol, degree, betweenness, closeness)),
+                      columns=["Symbol", "Degree", "Betweenness", "Closeness"])
     df = df.round({'Betweenness': 6, 'Closeness': 6})
     return df
+
 
 def get_enrichment(identifiers, species):
     # 获取富集分析 tsv
@@ -157,8 +169,14 @@ def get_enrichment(identifiers, species):
     df = pd.read_csv(io.StringIO(data), sep="\t")
 
     # 处理不必要的列
-    df["genes_in_background"] = df["number_of_genes"].astype(str) + '/' + df["number_of_genes_in_background"].astype(str)
-    df.drop(["number_of_genes", "number_of_genes_in_background", "ncbiTaxonId", "preferredNames"], axis=1, inplace=True)
+    df["genes_in_background"] = df["number_of_genes"].astype(
+        str) + '/' + df["number_of_genes_in_background"].astype(str)
+    df.drop([
+        "number_of_genes", "number_of_genes_in_background", "ncbiTaxonId",
+        "preferredNames"
+    ],
+            axis=1,
+            inplace=True)
     # 重新指定列的顺序
     cols = list(df.columns)
     cols.remove("genes_in_background")
@@ -168,15 +186,18 @@ def get_enrichment(identifiers, species):
     # 添加超链接
     url_dict = {
         "COMPARTMENTS": {
-            "url_head": f"https://compartments.jensenlab.org/Entity?order=textmining,knowledge,predictions&knowledge=10&textmining=10&predictions=10&type1=-22&type2={species}&id1=GO:",
+            "url_head":
+            f"https://compartments.jensenlab.org/Entity?order=textmining,knowledge,predictions&knowledge=10&textmining=10&predictions=10&type1=-22&type2={species}&id1=GO:",
             "color": "#ffb142"
         },
         "TISSUES": {
-            "url_head": f"https://tissues.jensenlab.org/Entity?order=textmining,knowledge,experiments&knowledge=10&experiments=10&textmining=10&type1=-25&type2={species}&id1=",
+            "url_head":
+            f"https://tissues.jensenlab.org/Entity?order=textmining,knowledge,experiments&knowledge=10&experiments=10&textmining=10&type1=-25&type2={species}&id1=",
             "color": "#B33771"
         },
         "DISEASES": {
-            "url_head": f"https://diseases.jensenlab.org/Entity?order=textmining,knowledge,experiments&textmining=10&knowledge=10&experiments=10&type1=-26&type2={species}&id1=",
+            "url_head":
+            f"https://diseases.jensenlab.org/Entity?order=textmining,knowledge,experiments&textmining=10&knowledge=10&experiments=10&type1=-26&type2={species}&id1=",
             "color": "#eb2f06"
         },
         "Process": {
@@ -200,7 +221,8 @@ def get_enrichment(identifiers, species):
             "color": "#f78fb3"
         },
         "SMART": {
-            "url_head": f"http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=",
+            "url_head":
+            f"http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=",
             "color": "#BDC581"
         },
         "InterPro": {
@@ -228,7 +250,8 @@ def get_enrichment(identifiers, species):
             "color": "#4b6584"
         },
         "NetworkNeighborAL": {
-            "url_head": f"https://string-db.org/cgi/network?input_query_species={species}&network_term_id=",
+            "url_head":
+            f"https://string-db.org/cgi/network?input_query_species={species}&network_term_id=",
             "color": "#e17055"
         }
     }
@@ -243,15 +266,21 @@ def get_enrichment(identifiers, species):
             term_text = term.split(':')[1]
         else:
             term_text = term
-        df.iloc[line, 1] = f'<a href="{url_head}{term_text}" target="_blank" style="color: {color};font-weight:bold;">{term}</a>'
+        df.iloc[
+            line,
+            1] = f'<a href="{url_head}{term_text}" target="_blank" style="color: {color};font-weight:bold;">{term}</a>'
 
     return df
+
 
 def visible(identifiers):
     identifiers = identifiers.split("\n")
     identifiers = list(filter(None, identifiers))
     if len(identifiers) > 0:
-        return topo_para.update(visible=True), network_stats.update(visible=True), enrichment.update(visible=True), button_download.update(visible=True)
+        return topo_para.update(visible=True), network_stats.update(
+            visible=True), enrichment.update(
+                visible=True), button_download.update(visible=True)
+
 
 def download_all(identifiers, species, required_score, network_type):
     # 网络图像
@@ -264,7 +293,9 @@ def download_all(identifiers, species, required_score, network_type):
     # url 列表
     urls = [url1, url2, url3]
     # 定义文件名
-    filenames = ["network.png", "network_interactions.tsv", "network_enrichment.tsv"]
+    filenames = [
+        "network.png", "network_interactions.tsv", "network_enrichment.tsv"
+    ]
 
     # 创建一个空的zip文件对象
     z = zipfile.ZipFile("cbd_string_analysis.zip", "w")
@@ -278,10 +309,12 @@ def download_all(identifiers, species, required_score, network_type):
     z.close()
     return "cbd_string_analysis.zip"
 
+
 def download_visible(identifiers, species, required_score, network_type):
     file = download_all(identifiers, species, required_score, network_type)
     if file != None:
         return file_download.update(visible=True)
+
 
 example = f"""
     <div class="iframe-container" style="position: relative;overflow: hidden;padding-top: 56.25%">
@@ -507,16 +540,36 @@ with gr.Blocks(css=css) as demo:
         with gr.Column(scale=1):
             # 创建输入组件
             with gr.Tab("Proteins in CBD2"):
-                protein_choose = gr.CheckboxGroup(choices=mysql_get_protein(), label='Proteins', info='Proteins in CBD2', elem_id='checkbox')
+                protein_choose = gr.CheckboxGroup(choices=mysql_get_protein(),
+                                                  label='Proteins',
+                                                  info='Proteins in CBD2',
+                                                  elem_id='checkbox')
             with gr.Tab("Proteins from file"):
                 protein_file = gr.File(file_types=['text', '.csv'])
-            protein_input = gr.TextArea(max_lines = 10, label='Protein Name', placeholder='Three ways to submit your query for protein(s):\n1. Type here;\n2. Select the protein(s) in CBD2 above;\n3. Upload your protein file(.txt or .csv) above.\nNote: One protein per line.')
-            species_input = gr.Dropdown(choices=['9606', '10090', '10116'], value='9606', label='Species')
-            slider_input = gr.Slider(minimum=0, maximum=1000, value=400, label='Score Threshold')
-            network_flavor_input = gr.Dropdown(choices=['confidence', 'evidence', 'actions'], value='confidence', label='Network Flavor')
-            network_type_input = gr.Dropdown(choices=['functional', 'physical'], value='functional', label='Network Type')
-            hide_disconnected_input = gr.Dropdown(choices=['0', '1'], value='0', label='Hide Disconnected Nodes')
-            
+            protein_input = gr.TextArea(
+                max_lines=10,
+                label='Protein Name',
+                placeholder=
+                'Three ways to submit your query for protein(s):\n1. Type here;\n2. Select the protein(s) in CBD2 above;\n3. Upload your protein file(.txt or .csv) above.\nNote: One protein per line.'
+            )
+            species_input = gr.Dropdown(choices=['9606', '10090', '10116'],
+                                        value='9606',
+                                        label='Species')
+            slider_input = gr.Slider(minimum=0,
+                                     maximum=1000,
+                                     value=400,
+                                     label='Score Threshold')
+            network_flavor_input = gr.Dropdown(
+                choices=['confidence', 'evidence', 'actions'],
+                value='confidence',
+                label='Network Flavor')
+            network_type_input = gr.Dropdown(
+                choices=['functional', 'physical'],
+                value='functional',
+                label='Network Type')
+            hide_disconnected_input = gr.Dropdown(
+                choices=['0', '1'], value='0', label='Hide Disconnected Nodes')
+
             # 创建按钮组件
             with gr.Row():
                 button_clear = gr.Button("Clear", elem_id="clear-button")
@@ -529,64 +582,105 @@ with gr.Blocks(css=css) as demo:
             # button_download = gr.Button("Download Analysis", visible=False, elem_id="download-button")
 
             # 网络参数输出列表
-            network_stats = gr.Dataframe(label="Network Stats:", elem_id="network-stats", visible=False)
+            network_stats = gr.Dataframe(label="Network Stats:",
+                                         elem_id="network-stats",
+                                         visible=False)
             # topo_para = gr.Dataframe(label="Topological Parameters:", elem_id="topo-para", visible=False)
             # gr.update(visible=True)
-            
+
         with gr.Column(scale=3.25, min_width=985):
             # HTML 输出组件
             html_output = gr.HTML(value=example)
             with gr.Row():
                 # 例子组件
                 gr.Examples(examples=[
-                                      "Biomarkers for Diagnosis in CBD2", 
-                                      "Biomarkers for Treatment in CBD2", 
-                                      "Biomarkers for Prognosis in CBD2"
-                                      ], 
-                            label="Try Examples", 
-                            inputs=cache, 
-                            outputs=[protein_input], 
-                            fn=example_proteins, 
-                            cache_examples=True, 
+                    "Biomarkers for Diagnosis in CBD2",
+                    "Biomarkers for Treatment in CBD2",
+                    "Biomarkers for Prognosis in CBD2"
+                ],
+                            label="Try Examples",
+                            inputs=cache,
+                            outputs=[protein_input],
+                            fn=example_proteins,
+                            cache_examples=True,
                             run_on_click=True)
                 # 下崽组件
-                button_download = gr.Button("Download Analysis", visible=False, elem_id="download-button").style(full_width=False)
-            file_download = gr.File(label="Download Analysis", visible=False, elem_id="download-file")
+                button_download = gr.Button(
+                    "Download Analysis",
+                    visible=False,
+                    elem_id="download-button").style(full_width=False)
+            file_download = gr.File(label="Download Analysis",
+                                    visible=False,
+                                    elem_id="download-file")
             # 网络参数组件
             # network_stats = gr.Dataframe(label="Network Stats:", elem_id="network-stats", visible=False)
-            topo_para = gr.Dataframe(label="Topological Parameters:", elem_id="topo-para", visible=False)
-            enrichment = gr.Dataframe(label="Functional Enrichments:", 
-                                                 datatype=["str", "html", "str", "str", "number", "number", "str"], 
-                                                 elem_id="enrichment", visible=False)
+            topo_para = gr.Dataframe(label="Topological Parameters:",
+                                     elem_id="topo-para",
+                                     visible=False)
+            enrichment = gr.Dataframe(label="Functional Enrichments:",
+                                      datatype=[
+                                          "str", "html", "str", "str",
+                                          "number", "number", "str"
+                                      ],
+                                      elem_id="enrichment",
+                                      visible=False)
 
     # 按钮监听
     # 清空输入
-    button_clear.click(fn=clear_input, inputs=None, outputs=[protein_choose, protein_file, protein_input, cache], queue=False)
+    button_clear.click(
+        fn=clear_input,
+        inputs=None,
+        outputs=[protein_choose, protein_file, protein_input, cache],
+        queue=False)
     # 获得网络 svg
-    button_input.click(fn=get_protein_network, 
-                             inputs=[protein_input, species_input, slider_input, network_flavor_input, network_type_input, hide_disconnected_input], 
-                             outputs=html_output)
+    button_input.click(fn=get_protein_network,
+                       inputs=[
+                           protein_input, species_input, slider_input,
+                           network_flavor_input, network_type_input,
+                           hide_disconnected_input
+                       ],
+                       outputs=html_output)
     # 获得网络参数
-    button_input.click(fn=get_network_stats, 
-                             inputs=[protein_input, species_input], 
-                             outputs=network_stats)
+    button_input.click(fn=get_network_stats,
+                       inputs=[protein_input, species_input],
+                       outputs=network_stats)
     # 计算拓扑参数
-    button_input.click(fn=calculate_topo, 
-                             inputs=[protein_input, species_input, slider_input, network_type_input], 
-                             outputs=topo_para)
+    button_input.click(fn=calculate_topo,
+                       inputs=[
+                           protein_input, species_input, slider_input,
+                           network_type_input
+                       ],
+                       outputs=topo_para)
     # 获得功能富集结果
-    button_input.click(fn=get_enrichment, 
-                             inputs=[protein_input, species_input], 
-                             outputs=enrichment)
+    button_input.click(fn=get_enrichment,
+                       inputs=[protein_input, species_input],
+                       outputs=enrichment)
     # 显示列表
-    button_input.click(fn=visible, inputs=protein_input, outputs=[topo_para, network_stats, enrichment, button_download])
+    button_input.click(
+        fn=visible,
+        inputs=protein_input,
+        outputs=[topo_para, network_stats, enrichment, button_download])
     # 下载分析结果
-    button_download.click(fn=download_all, inputs=[protein_input, species_input, slider_input, network_type_input], outputs=file_download)
-    button_download.click(fn=download_visible, inputs=[protein_input, species_input, slider_input, network_type_input], outputs=file_download)
+    button_download.click(fn=download_all,
+                          inputs=[
+                              protein_input, species_input, slider_input,
+                              network_type_input
+                          ],
+                          outputs=file_download)
+    button_download.click(fn=download_visible,
+                          inputs=[
+                              protein_input, species_input, slider_input,
+                              network_type_input
+                          ],
+                          outputs=file_download)
 
     # 获取蛋白写入文本框
-    protein_choose.change(fn=choose_protein, inputs=protein_choose, outputs=protein_input)
-    protein_file.change(fn=get_protein_from_file, inputs=protein_file, outputs=protein_input)
+    protein_choose.change(fn=choose_protein,
+                          inputs=protein_choose,
+                          outputs=protein_input)
+    protein_file.change(fn=get_protein_from_file,
+                        inputs=protein_file,
+                        outputs=protein_input)
 
 demo.queue(api_open=False)
 # 在本地运行demo对象
