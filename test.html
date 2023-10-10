@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://string-db.org/javascript/combined_embedded_network_v2.0.4.js"></script>
+    <script>
+      function send_request() {
+          getSTRING('https://string-db.org', {
+              'species': '9606',
+              'identifiers': ['tp53'],
+              'network_flavor': 'confidence',
+              'required_score': '400',
+              'caller_identity': 'www.awesome_app.org'
+          })
+      }
+    </script>
+  </head>
+  <body onload="send_request();">
+    <p><b>Network:</b></p>
+    <div id="stringEmbedded"></div>
+  </body>
+</html>

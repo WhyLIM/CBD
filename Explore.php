@@ -32,7 +32,7 @@
                 'species': '9606',
                 'identifiers': proteins,
                 'network_flavor': 'confidence',
-                'caller_identity': 'www.awesome_app.org'
+                'caller_identity': 'www.eyeseeworld.com'
             })
         }
 

@@ -37,41 +37,41 @@
     if ($biomarker == 0) {
         header("Location: Biomarkers.html");
     } else { ?>
-        <div style="text-align: center;">
-            <h2>Protein biomarker list</h2>
-            <p style="text-align: center;"><?php echo $biomarker; ?> Biomarkers</p>
-            <table class="tab">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Biomarker</th>
-                        <th>Location</th>
-                        <th>Application</th>
-                        <th>Reference</th>
-                    </tr>
-                </thead>
-
-                <tbody>
+    <div style="text-align: center;">
+        <h2>Protein biomarker list</h2>
+        <p style="text-align: center;"><?php echo $biomarker; ?> Biomarkers</p>
+        <table class="tab">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Biomarker</th>
+                    <th>Location</th>
+                    <th>Application</th>
+                    <th>Reference</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+            <?php
+            // loop through the results
+            while ($row = mysqli_fetch_assoc($result)) {
+                extract($row); ?>
+                <tr onclick="change(this.id)" style="cursor:pointer;" id='<?php echo $ID ?>'>
                     <?php
-                    // loop through the results
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        extract($row); ?>
-                        <tr onclick="change(this.id)" style="cursor:pointer;" id='<?php echo $ID ?>'>
-                            <?php
-                            echo '<td>' . $ID . '</td>';
-                            echo '<td>' . $Biomarker . '</td>';
-                            echo '<td>' . $Location . '</td>';
-                            echo '<td>' . $Application . '</td>';
-                            echo '<td>' . $Reference_first_author . '. ' . $Reference_journal . '. ' . $Reference_year . '</td>';
-                            ?>
-                        </tr> <?php
-                            } ?>
-                </tbody>
-            </table>
-        </div>
+                    echo '<td>' . $ID . '</td>';
+                    echo '<td>' . $Biomarker . '</td>';
+                    echo '<td>' . $Location . '</td>';
+                    echo '<td>' . $Application . '</td>';
+                    echo '<td>' . $Reference_first_author . '. ' . $Reference_journal . '. ' . $Reference_year . '</td>';
+                    ?>
+                </tr> <?php
+            } ?>
+            </tbody>
+        </table>
+    </div>
     <?php
-    } ?>
-
+    }?>
+    
 </body>
 
 </html>

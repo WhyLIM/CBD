@@ -20,30 +20,30 @@
                 searchexc();
             }
         }
-
+        
         function clear1() {
             document.getElementById('searchinput').value = "";
         }
-
+        
         function change(id) {
             var url = "info_detail_nb.php?id=" + id;
             //document.location.href=url;
             window.open(url);
         }
-
+        
         function searchexc() {
             var searchinput = document.getElementById('searchinput').value;
             var url = "info.php?id=" + searchinput;
             window.open(url);
         }
-
+        
         function help() {
             var newwindow = window.open('About.html');
             newwindow.onload = function() {
-                newwindow.document.getElementsByClassName('f_content')['f_content']['src'] = "help/index.html#/Use";
+                newwindow.document.getElementsByClassName('f_content')['f_content']['src']="help/index.html#/Use";
             }
         }
-
+        
         function foothelp(e) {
             if (e.id == "Use") {
                 var frameurl = "help/index.html#/Use";
@@ -63,9 +63,9 @@
         }
     </script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('ul.mtree').mtree();
-        });
+		$(document).ready(function() {
+			$('ul.mtree').mtree();
+		});
     </script>
 </head>
 
@@ -84,9 +84,9 @@
                         <ul class="menu">
                             <li><a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
                             <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a>
-                                <ul class="submenu">
-                                    <li><a href="NBiomarkers.html">Non-Biomarkers</a></li>
-                                </ul>
+                            <ul class="submenu">
+                                <li><a href="NBiomarkers.html">Non-Biomarkers</a></li>
+                            </ul>
                             </li>
                             <li><a href="Submission.php"><i class="fa fa-upload"></i>&nbsp;&nbsp;Submission</a></li>
                             <li><a href="Download.html"><i class="fa fa-cloud-download"></i>&nbsp;&nbsp;Download</a></li>
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="content">
             <div class="innerbox">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding: 0 10px;">
@@ -106,18 +106,18 @@
                             <td colspan=2 width="100%" height="100">
                                 <div align="center" style="margin: auto;margin-top: 40px;width: fit-content;">
                                     <div style="float: left;"><input type="text" name="searchinput" id="searchinput" size="60" onKeyDown="KeyDown()" placeholder="input a (non-)biomarker name"></div>
-                                    <div style="float: left;"><input name="searchsubmit" id="cbutton" type="button" value="Search" onClick="searchexc()"></div>
-                                    <div style="float: left;"><input name="searchclear" id="cbutton" type="button" value="Clear" onClick="clear1()"></div>
+                                    <div style="float: left;"><input name="searchsubmit" id="cbutton" type="button" value="Search" 
+                                        onClick="searchexc()"></div>
+                                    <div style="float: left;"><input name="searchclear" id="cbutton" type="button" value="Clear" 
+                                        onClick="clear1()"></div>
                                     <div style="float: left;"><input name="Help" id="cbutton" type="button" value="Help" onclick="help()"></div>
-                                    <ul class="lab">
-                                        <li><a href="Advanced.php">🔍 Advanced Search</a></li>
-                                    </ul>
+                                    <ul class="lab"><li><a href="Advanced.php">🔍 Advanced Search</a></li></ul>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
+                
                 <?php
                 $con = mysqli_connect('localhost', 'user', 'passwd', 'database');
                 if (!$con) {
@@ -131,49 +131,49 @@
                       ORDER BY 
                       ID ASC';
                 $result = mysqli_query($con, $query);
-
+            
                 // determine number of rows in returned result
                 $biomarker = mysqli_num_rows($result);
-
+            
                 if ($biomarker == 0) {
                     header("Location: you.html");
                 } else { ?>
-                    <div style="text-align: center;">
-                        <h2>Non-biomarker list</h2>
-                        <p style="text-align: center;"><?php echo $biomarker; ?> Non-biomarkers</p>
-                        <table class="tab">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Biomarker</th>
-                                    <th>Application</th>
-                                    <th>Reference</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
+                <div style="text-align: center;">
+                    <h2>Non-biomarker list</h2>
+                    <p style="text-align: center;"><?php echo $biomarker; ?> Non-biomarkers</p>
+                    <table class="tab">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Biomarker</th>
+                                <th>Application</th>
+                                <th>Reference</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        <?php
+                        // loop through the results
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            extract($row); ?>
+                            <tr onclick="change(this.id)" style="cursor:pointer;" id='<?php echo $ID ?>'>
                                 <?php
-                                // loop through the results
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    extract($row); ?>
-                                    <tr onclick="change(this.id)" style="cursor:pointer;" id='<?php echo $ID ?>'>
-                                        <?php
-                                        echo '<td>' . $ID . '</td>';
-                                        echo '<td>' . $Biomarker . '</td>';
-                                        echo '<td>' . $Application . '</td>';
-                                        echo '<td>' . $Reference_first_author . '. ' . $Reference_year . '</td>';
-                                        ?>
-                                    </tr> <?php
-                                        } ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                echo '<td>' . $ID . '</td>';
+                                echo '<td>' . $Biomarker . '</td>';
+                                echo '<td>' . $Application . '</td>';
+                                echo '<td>' . $Reference_first_author . '. ' . $Reference_year . '</td>';
+                                ?>
+                            </tr> <?php
+                        } ?>
+                        </tbody>
+                    </table>
+                </div>
                 <?php
-                } ?>
-
+                }?>
+                
             </div>
         </div>
-
+        
         <div class="footer">
             <div class="innerbox">
                 <div class="footer-left">
@@ -244,7 +244,7 @@
             </div>
         </div>
     </div>
-
+    
 </body>
 
 </html>

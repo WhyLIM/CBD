@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My Blog</title>
+    <script>
+    const tableToCSV = table => {
+      const headers = Array.from(table.querySelectorAll('th'))
+        .map(item => item.innerText).join(',')
+    
+      const rows = Array.from(table.querySelectorAll('tr'))
+        .reduce((arr, domRow) => {
+          if (domRow.querySelector('th')) return arr
+    
+          const cells = Array.from(domRow.querySelectorAll('td'))
+            .map(item => item.innerText)
+            .join(',')
+    
+          return arr.concat([cells])
+        }, [])
+    
+      return headers + '\n' + rows.join('\n')
+    }
+    
+    const downloadCSV = csv => {
+      const csvFile = new Blob([csv], { type: 'text/csv' })
+      const downloadLink =  document.createElement('a')
+    
+      downloadLink.download = `CSV-${new Date().toDateString()}.csv`
+      downloadLink.href = window.URL.createObjectURL(csvFile)
+      downloadLink.style.display = 'none'
+      document.body.appendChild(downloadLink)
+    
+      downloadLink.click()
+    }
+    
+    document.querySelector('button').addEventListener('click', () => {
+      const table = document.querySelector('table')
+      const csv = tableToCSV(table)
+      
+      return downloadCSV(csv)
+    })
+    </script>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        
+        th, td {
+          padding: 15px;
+          text-align: left;
+        }
+        
+        table#t01 {
+          width: 100%;    
+          background-color: #f1f1c1;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Blog</h1>
+    <p>Welcome to my blog! Here you will find my thoughts, musings, and experiences.</p>
+    <table style="width:100%">
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th> 
+        <th>Age</th>
+      </tr>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td> 
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Eve</td>
+        <td>Jackson</td> 
+        <td>94</td>
+      </tr>
+    </table>
+    
+    <button on-click="download()">Download CSV</button>
+</body>
+</html>

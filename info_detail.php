@@ -15,12 +15,12 @@
     <script type="text/javascript" src="https://string-db.org/javascript/combined_embedded_network_v2.0.4.js"></script>
     <script>
         function send_request() {
-            var protein = document.getElementById("info").rows[20].getElementsByTagName("td")[1].innerHTML.split(' ');
-            getSTRING('https://string-db.org', {
+            var protein = document.getElementById("info").rows[21].getElementsByTagName("td")[1].innerHTML.split(' ');
+            getSTRING('https://version-12-0.string-db.org', {
                 'species': '9606',
                 'identifiers': protein,
                 'network_flavor': 'confidence',
-                'caller_identity': 'www.awesome_app.org'
+                'caller_identity': 'www.eyeseeworld.com'
             })
         }
         
@@ -88,7 +88,7 @@
                       ID, Biomarker, Category, Discription, Region, Race, Number, `Gender_M/F`, Age, 
                       Location, Stage, Source, Experiment, Statictics, Application, Conclusion, 
                       Reference_first_author, Reference_journal, Reference_year, PMID, Addition, 
-                      STRING_Name, STRING_ID, Male, Female, Age_Mean, Target, Drugs
+                      STRING_Name, STRING_ID, Male, Female, Age_Mean, Target, Drugs, Clinical_Use
                       FROM 
                       biomarker
                       where ID="' . $id . '"';
@@ -139,7 +139,7 @@
                         echo '<tr><td>Region</td><td>' . $row[4] . '</td></tr>';
                         echo '<tr><td>Race</td><td>' . $row[5] . '</td></tr>';
                         echo '<tr><td>Number</td><td>' . $row[6] . '</td></tr>';
-                        echo '<tr><td>Gender</td><td>' . $row[7] . '</td></tr>';
+                        echo '<tr><td>Gender (Male/Female)</td><td>' . $row[7] . '</td></tr>';
                         echo '<tr><td>Age</td><td>' . $row[8] . '</td></tr>';
                         echo '<tr><td>Location</td><td>' . $row[9] . '</td></tr>';
                         echo '<tr><td>Stage</td><td>' . $row[10] . '</td></tr>';
@@ -147,25 +147,26 @@
                         echo '<tr><td>Experiment</td><td>' . $row[12] . '</td></tr>';
                         echo '<tr><td>Statictics</td><td>' . $row[13] . '</td></tr>';
                         echo '<tr><td>Application</td><td>' . $row[14] . '</td></tr>';
+                        echo '<tr><td>Clinical_Use</td><td>' . $row[28] . '</td></tr>';
                         echo '<tr><td>Conclusion</td><td>' . $row[15] . '</td></tr>';
                         echo '<tr><td>Reference</td><td>' . $row[16] . '. ' . $row[17] . '. '  . $row[18] . '</td></tr>';
                         echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[19] . '" target="_black" style="color:#20558a;font-weight:bold;"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[19] . ' (Click to PubMed)</a></td></tr>';
                         
-                        if (trim($row[21]) == "NA" or trim($row[21]) == NULL) {
+                        if (trim($row[21]) == "No Data" or trim($row[21]) == NULL) {
                             $stext = "None";
                         } else {
                             $stext = trim($row[21]);
                         }
                         echo "<tr><td>Symbol</td><td>" . $stext . "</td></tr>";
                         
-                        if (trim($row[22]) == "NA" or trim($row[22]) == NULL) {
+                        if (trim($row[22]) == "No Data" or trim($row[22]) == NULL) {
                             $sitext = "None";
                         } else {
                             $sitext = trim($row[22]);
                         }
                         echo "<tr><td>STRING ID</td><td>" . $sitext . "</td></tr>";
                         
-                        if (trim($row[21]) == "NA" or trim($row[21]) == NULL) {
+                        if (trim($row[21]) == "No Data" or trim($row[21]) == NULL) {
                             $ppi = "None";
                         } else {
                             $ppi = "<div><button id='Querybutton' onclick='send_request();' type='button' style='margin: 20px auto;background-color: #60bbff;box-shadow: 0 5px 10px #60bbff;'><div><i class='fa fa-share-alt'></i>&nbsp;Show STRING PPI</div></button></div>";
@@ -180,7 +181,7 @@
                         
                         $dtext = "";
                         // $drugcolor = "#c42a8f";
-                        if ($row[27] == "NA") {
+                        if ($row[27] == "No Data") {
                             $dtext = "None";
                         } else {
                             $dburl = "https://go.drugbank.com/drugs/";
@@ -216,7 +217,7 @@
                         echo '<tr><td>Region</td><td>' . $row[4] . '</td></tr>';
                         echo '<tr><td>Race</td><td>' . $row[5] . '</td></tr>';
                         echo '<tr><td>Number</td><td>' . $row[6] . '</td></tr>';
-                        echo '<tr><td>Gender</td><td>' . $row[7] . '</td></tr>';
+                        echo '<tr><td>Gender (Male/Female)</td><td>' . $row[7] . '</td></tr>';
                         echo '<tr><td>Age</td><td>' . $row[8] . '</td></tr>';
                         echo '<tr><td>Location</td><td>' . $row[9] . '</td></tr>';
                         echo '<tr><td>Stage</td><td>' . $row[10] . '</td></tr>';
@@ -224,6 +225,7 @@
                         echo '<tr><td>Experiment</td><td>' . $row[12] . '</td></tr>';
                         echo '<tr><td>Statictics</td><td>' . $row[13] . '</td></tr>';
                         echo '<tr><td>Application</td><td>' . $row[14] . '</td></tr>';
+                        echo '<tr><td>Clinical_Use</td><td>' . $row[28] . '</td></tr>';
                         echo '<tr><td>Conclusion</td><td>' . $row[15] . '</td></tr>';
                         echo '<tr><td>Reference</td><td>' . $row[16] . '. ' . $row[17] . '. '  . $row[18] . '</td></tr>';
                         echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[19] . '" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[19] . ' (Click to PubMed)</a></td></tr>';
@@ -234,7 +236,7 @@
                         echo '<tr><td>Region</td><td>' . $row[4] . '</td></tr>';
                         echo '<tr><td>Race</td><td>' . $row[5] . '</td></tr>';
                         echo '<tr><td>Number</td><td>' . $row[6] . '</td></tr>';
-                        echo '<tr><td>Gender</td><td>' . $row[7] . '</td></tr>';
+                        echo '<tr><td>Gender (Male/Female)</td><td>' . $row[7] . '</td></tr>';
                         echo '<tr><td>Age</td><td>' . $row[8] . '</td></tr>';
                         echo '<tr><td>Location</td><td>' . $row[9] . '</td></tr>';
                         echo '<tr><td>Stage</td><td>' . $row[10] . '</td></tr>';
@@ -242,6 +244,7 @@
                         echo '<tr><td>Experiment</td><td>' . $row[12] . '</td></tr>';
                         echo '<tr><td>Statictics</td><td>' . $row[13] . '</td></tr>';
                         echo '<tr><td>Application</td><td>' . $row[14] . '</td></tr>';
+                        echo '<tr><td>Clinical_Use</td><td>' . $row[28] . '</td></tr>';
                         echo '<tr><td>Conclusion</td><td>' . $row[15] . '</td></tr>';
                         echo '<tr><td>Reference</td><td>' . $row[16] . '. ' . $row[17] . '. '  . $row[18] . '</td></tr>';
                         echo '<tr><td>PMID</td><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' . $row[19] . '" target="_black"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;' . $row[19] . ' (Click to PubMed)</a></td></tr>';

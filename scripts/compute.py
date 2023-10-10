@@ -16,13 +16,13 @@ for i in text:
 
 edgelist = list(set(edgelist))
 
-g = igraph.Graph.TupleList(edgelist, directed=False)
+g = igraph.Graph.TupleList(edgelist, directed = False)
 symbol = g.vs["name"]
 degree = g.degree(symbol)
 betweenness = g.betweenness(symbol)
 closeness = g.closeness(symbol)
 
-df = pd.DataFrame(list(zip(symbol, degree, betweenness, closeness)),
-                  columns=["Symbol", "Degree", "Betweenness", "Closeness"])
-df_html = df.to_html(index=False, table_id="topopara", border=0)
+df = pd.DataFrame(list(zip(symbol, degree, betweenness, closeness)), columns = ["Symbol", "Degree", "Betweenness", "Closeness"])
+df_html = df.to_html(index = False, table_id = "topopara", border = 0)
 print(df_html)
+

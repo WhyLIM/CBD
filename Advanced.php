@@ -14,15 +14,15 @@
     <script>
         function color() {
             var select = document.querySelectorAll("select");
-            select.forEach(function(item) {
-                if (item.value == "") {
-                    item.style.color = "#888";
-                } else {
-                    item.style.color = "";
-                }
+            select.forEach(function (item) {
+               if (item.value == "") {
+                   item.style.color = "#888";
+               } else {
+                   item.style.color = "";
+               }
             });
         }
-
+        
         function foothelp(e) {
             if (e.id == "Use") {
                 var frameurl = "help/index.html#/Use";
@@ -58,9 +58,9 @@
                         <ul class="menu">
                             <li><a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
                             <li class="active"><a href="Biomarkers.html"><i class="fa fa-list"></i>&nbsp;&nbsp;Biomarkers</a>
-                                <ul class="submenu">
-                                    <li><a href="NBiomarkers.php">Non-Biomarkers</a></li>
-                                </ul>
+                            <ul class="submenu">
+                                <li><a href="NBiomarkers.php">Non-Biomarkers</a></li>
+                            </ul>
                             </li>
                             <li><a href="Submission.php"><i class="fa fa-upload"></i>&nbsp;&nbsp;Submission</a></li>
                             <li><a href="Download.html"><i class="fa fa-cloud-download"></i>&nbsp;&nbsp;Download</a></li>
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-
+        
         <?php
         $con = mysqli_connect('localhost', 'user', 'passwd', 'database');
         if (!$con) {
@@ -104,7 +104,7 @@
         $first_author = array_unique($first_author);
         $journal = array_unique($journal);
         $year = array_unique($year);
-
+        
         // Sort
         asort($region);
         asort($location);
@@ -115,7 +115,7 @@
         asort($journal);
         asort($year);
         ?>
-
+        
         <div class="content">
             <div class="innerbox">
                 <div class="advance">
@@ -123,7 +123,7 @@
                         <h2 align="center">Advanced Search
                             <span>Please fill out at least one item.</span>
                         </h2>
-
+                        
                         <!-- 第 1 个检索 -->
                         <label>
                             <span>Region :</span>
@@ -131,11 +131,11 @@
                             <datalist id="regionlist">
                                 <?php
                                 foreach ($region as $rg) {
-                                    echo "<option value='" . $rg . "'>" . $rg . "</option>";
+                                   echo "<option value='" . $rg . "'>" . $rg . "</option>";
                                 } ?>
                             </datalist>
                         </label>
-
+                        
                         <!-- 第 2 个检索 -->
                         <label>
                             <span>Stage :</span>
@@ -143,11 +143,11 @@
                                 <option value="">Select the stage</option>
                                 <?php
                                 foreach ($stage as $st) {
-                                    echo "<option value='" . $st . "'>" . $st . "</option>";
+                                   echo "<option value='" . $st . "'>" . $st . "</option>";
                                 } ?>
                             </select>
                         </label>
-
+                        
                         <!-- 第 3 个检索 -->
                         <label>
                             <span>Location :</span>
@@ -155,11 +155,11 @@
                                 <option value="">Select the location</option>
                                 <?php
                                 foreach ($location as $lo) {
-                                    echo "<option value='" . $lo . "'>" . $lo . "</option>";
+                                   echo "<option value='" . $lo . "'>" . $lo . "</option>";
                                 } ?>
                             </select>
                         </label>
-
+                        
                         <!-- 第 4 个检索 -->
                         <label>
                             <span>Source :</span>
@@ -167,11 +167,11 @@
                                 <option value="">Select the source</option>
                                 <?php
                                 foreach ($source as $so) {
-                                    echo "<option value='" . $so . "'>" . $so . "</option>";
+                                   echo "<option value='" . $so . "'>" . $so . "</option>";
                                 } ?>
                             </select>
                         </label>
-
+                        
                         <!-- 第 5 个检索 -->
                         <label>
                             <span>Application :</span>
@@ -179,11 +179,11 @@
                                 <option value="">Select the useage</option>
                                 <?php
                                 foreach ($apply as $ap) {
-                                    echo "<option value='" . $ap . "'>" . $ap . "</option>";
+                                   echo "<option value='" . $ap . "'>" . $ap . "</option>";
                                 } ?>
                             </select>
                         </label>
-
+                        
                         <!-- 第 6-8 个检索 -->
                         <label>
                             <!-- First Author -->
@@ -195,7 +195,7 @@
                                     echo "<option value='" . $fa . "'>" . $fa . "</option>";
                                 } ?>
                             </datalist>
-
+                            
                             <!-- Journal -->
                             <span>Reference (Journal) :</span>
                             <input type="text" name="searchinput7" id="searchinput7" list="jlist" placeholder="Select or type Journal">
@@ -205,7 +205,7 @@
                                     echo "<option value='" . $jn . "'>" . $jn . "</option>";
                                 } ?>
                             </datalist>
-
+                            
                             <!-- Year -->
                             <span>Reference (Year) :</span>
                             <input type="text" name="searchinput8" id="searchinput8" list="ylist" placeholder="Select or type publication year">
@@ -216,7 +216,7 @@
                                 } ?>
                             </datalist>
                         </label>
-
+                        
                         <!-- search 键 -->
                         <div align="center" style="padding-top: 10px;">
                             <input name="submit" type="submit" id="cbutton" value="Search" onclick="searchexc()">
@@ -225,7 +225,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="footer">
             <div class="innerbox">
                 <div class="footer-left">
@@ -303,7 +303,7 @@
                 searchexc();
             }
         }
-
+        
         function searchexc() {
             var searchinput1 = document.getElementById("searchinput1").value;
             var searchinput2 = document.getElementById("searchinput2").value;
@@ -369,8 +369,8 @@
                     url += "&id8=" + searchinput8;
             }
             // 不允许 8 项全空
-            if (searchinput1 == "" && searchinput2 == "" && searchinput3 == "" && searchinput4 == "" &&
-                searchinput5 == "" && searchinput6 == "" && searchinput7 == "" && searchinput8 == "") {
+            if (searchinput1 == "" && searchinput2 == "" && searchinput3 == "" && searchinput4 == "" 
+            && searchinput5 == "" && searchinput6 == "" && searchinput7 == "" && searchinput8 == "") {
                 alert("Please fill out at least one item!");
             } else {
                 window.open(url);
