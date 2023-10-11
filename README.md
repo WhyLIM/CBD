@@ -6,6 +6,19 @@
     <video src="./videos/Tutorial.mp4" width="100%" controls="controls"></video>
 </div>
 
+## Tutorial Part 1
+
+![Tutorial_Part1](./videos/Tutorial_Part1.mp4)
+
+## Tutorial Part 2
+
+![Tutorial_Part1](./videos/Tutorial_Part1.mp4)
+
+## Tutorial Part 3
+
+![Tutorial_Part1](./videos/Tutorial_Part1.mp4)
+
+
 ## How to Use
 
 ---
