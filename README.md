@@ -2,26 +2,19 @@
 
 # Quick Start
 
-<div>
-    <video src="./videos/Tutorial.mp4" width="100%" controls="controls"></video>
-</div>
-
 ## Tutorial Part 1
 
-![Tutorial_Part1](./videos/Tutorial_Part1.mp4)
+https://github.com/WhyLIM/CBD/assets/60998275/6a325f51-f321-460f-ac38-93a6998102a2
 
 ## Tutorial Part 2
 
-![Tutorial_Part1](./videos/Tutorial_Part1.mp4)
+https://github.com/WhyLIM/CBD/assets/60998275/caae93c9-0a5a-4c8e-b509-39de37635573
 
 ## Tutorial Part 3
 
-![Tutorial_Part1](./videos/Tutorial_Part1.mp4)
-
+https://github.com/WhyLIM/CBD/assets/60998275/c31efa0d-6221-48b9-a13a-942631857839
 
 ## How to Use
-
----
 
 ### How to Search
 
