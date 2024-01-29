@@ -11,4 +11,4 @@
 
 A cancer biomarker refers to a substance or process that is indicative of the presence of cancer in the body. A biomarker may be a molecule secreted by a tumor or a specific response of the body to the presence of cancer. Genetic, epigenetic, proteomic, glycomic, and imaging biomarkers can be used for cancer diagnosis, prognosis, and epidemiology. Ideally, such biomarkers can be assayed in non-invasively collected biofluids like blood or serum.
 
-![Figure 2. Questions that can be answered by biomarkers. (From Wikipedia)](../images/old/cancerbiomarker.png "Figure 2. Questions that can be answered by biomarkers. (From Wikipedia)")
+![Figure 2. Questions that can be answered by biomarkers. (From Wikipedia)](../images/old/cancerbiomarker.png "Figure 2. Questions that can be answered by biomarkers.")

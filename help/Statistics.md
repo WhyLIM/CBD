@@ -23,13 +23,15 @@ Finally, 690 original articles were included in this update through manual full-
 <div class="img-caption">Figure 4. Biomarker Category Distribution</div>
 </center>
 
-Currently 859,187 samples are included in CBD2,  339,537 males and  277,3406 females, with no gender information provided for the remaining samples. (Figure 5)
+
+Currently 857,840 samples are included in CBD2,  339,537 males and  278,798 females, with no gender information provided for the remaining samples. (Figure 5)
 
 <iframe scrolling="no" style="border:none;" seamless="seamless" src="../images/frame-img/gender.html" height="400" width="100"></iframe>
 
 <center>
 <div class="img-caption">Figure 5. Gender Distribution</div>
 </center>
+
 
 For region distribution, CBD continues CRC biomarker researches from 6 Continents: Africa, Asia, Europe, North America, Oceania, South America. Figure 6 shows the distribution of researches according to continents and countries. Most of the researches concluded in our CBD were from Asia and Europe.
 
@@ -39,7 +41,8 @@ For region distribution, CBD continues CRC biomarker researches from 6 Continent
 <div class="img-caption">Figure 6. Biomarkers in Different Continents</div>
 </center>
 
-Also, we separated the samples inside CBD into Asian and Non-Asian race to research the different and similar things in different races, and the result of which are presented in Figure 7. From Figure 8 you can compare the different of most used biomarkers in Asian and Non-Asian race.
+
+In addition, we divided the samples within the CBD into Asians and non-Asian races to study the differences and similarities among different races. The statistical results are shown in Figure 7. We found that the number of studies on Asians and non-Asians It's almost equivalent.
 
 <iframe scrolling="no" style="border:none;" seamless="seamless" src="../images/frame-img/Asian.html" height="400" width="100%"></iframe>
 
@@ -47,13 +50,18 @@ Also, we separated the samples inside CBD into Asian and Non-Asian race to resea
 <div class="img-caption">Figure 7. Race Summary for Research Number</div>
 </center>
 
+Figure 8 shows a comparison of the number of the most studied biomarkers common to Asians and non-Asian races. For example, among Asians and non-Asians, Carcinoembryonic antigen (CEA) has been the most studied. Among them, 12 studies included samples of Asians and 25 studies included samples of non-Asians.
+
+
 <iframe scrolling="no" style="border:none;" seamless="seamless" src="../images/frame-img/race_compare.html" height="400" width="100%"></iframe>
 
 <center>
-<div class="img-caption">Figure 8. Most Used Biomarkers in Asian and Non-Asian Race</div>
+<div class="img-caption">Figure 8. Comparison of the number of the most studied biomarkers common to Asians and Non-Asian Races</div>
 </center>
 
-Meanwhile we calculated the cancer location of each concluded research, and the number of colon, rectum cancer are showed in figure 9, from which we can see that most of research (1809) studied both colon and rectum, and few research is rarely studied colon or rectum.
+
+
+Meanwhile we calculated the cancer location of each concluded research, and the number of colon, rectum cancer are showed in Figure 9, from which we can see that most of research (1809) studied both colon and rectum, and few research is rarely studied colon or rectum.
 
 ![Figure 9. Number about cancer location](../images/location.png "Figure 9. Cancer Location of Each Concluded Research")
 
@@ -69,6 +77,7 @@ The source where the biomarkers come from were also counted and showed in Figure
 <div class="img-caption">Figure 10. Summary of Biomarker Source</div>
 </center>
 
+
 As shown in Figure 11 & 12, for the function of biomarkers in our database, we also made professional statistic by summarizing them into three types: Diagnostic biomarker, therapeutic biomarker, and prognostic biomarker.
 
 <iframe scrolling="no" style="border:none;" seamless="seamless" src="../images/frame-img/application.html" height="620" width="100%"></iframe>
@@ -76,6 +85,7 @@ As shown in Figure 11 & 12, for the function of biomarkers in our database, we a
 <center>
 <div class="img-caption">Figure 11. Biomarker Application Distribution, shown in histogram and pie chart</div>
 </center>
+
 
 ![Figure 12. Biomarker application distribution](../images/application.png "Figure 12. Biomarker application distribution")
 
@@ -90,5 +100,6 @@ As we all know, experiment method is very important to a research, we also summa
 <center>
 <div class="img-caption">Figure 13. Experiment Method Used in Researchs</div>
 </center>
+
 
 To sum up, CBD is an all-encompassing database whose data comes from all continents of the world, from different races, and from various tissues of the body. We do hope that our database will help researchers and contribute to cancer research.

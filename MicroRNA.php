@@ -17,7 +17,7 @@
 
 <body>
     <?php
-    $con = mysqli_connect('localhost', 'user', 'passwd', 'database');
+    $con = mysqli_connect('ip','user','passwd', 'database');
     if (!$con) {
         die("Fail to connect MySQL: " . mysqli_connect_errno());
     }

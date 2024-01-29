@@ -1,0 +1,38 @@
+
+TY  - JOUR
+AU  - Zhang, Xueli
+AU  - Li, Min
+AU  - Ye, Siting
+AU  - Shen, Ke
+AU  - Yuan, Haining
+AU  - Bakhtyar, Shoaib
+AU  - Peng, Qiliang
+AU  - Liu, Yongsheng
+AU  - Wang, Yingying
+AU  - Li, Manshi
+AU  - Zhang, Chi
+AU  - Wang, Yixin
+AU  - Bai, Xiaohe
+AU  - Liu, Shunming
+AU  - Zhao, Ke
+AU  - Shen, Bairong
+AU  - Repsilber, Dirk
+AU  - Hu, Guang
+AU  - Zhang, Hong
+AU  - Sun, Xiao-Feng
+C7  - e155
+TI  - CBD2: A functional biomarker database for colorectal cancer
+JO  - iMeta
+JA  - iMeta
+VL  - n/a
+IS  - n/a
+SN  - 2770-5986
+UR  - https://doi.org/10.1002/imt2.155
+DO  - https://doi.org/10.1002/imt2.155
+SP  - e155
+KW  - biomarker
+KW  - colorectal cancer
+KW  - database
+KW  - network analysis
+AB  - Abstract The rapidly evolving landscape of biomarkers for colorectal cancer (CRC) necessitates an integrative, updated repository. In response, we constructed the Colorectal Cancer Biomarker Database (CBD), which collected and displayed the curated biomedicine information for 870 CRC biomarkers in the previous study. Building on CBD, we have now developed CBD2, which includes information on 1569 newly reported biomarkers derived from different biological sources (DNA, RNA, protein, and others) and clinical applications (diagnosis, treatment, and prognosis). CBD2 also incorporates information on nonbiomarkers that have been identified as unsuitable for use as biomarkers in CRC. A key new feature of CBD2 is its network analysis function, by which users can investigate the visible and topological network between biomarkers and identify their relevant pathways. CBD2 also allows users to query a series of chemicals, drug combinations, or multiple targets, to enable multidrug, multitarget, multipathway analyses, toward facilitating the design of polypharmacological treatments for CRC. CBD2 is freely available at http://www.eyeseeworld.com/cbd.
+ER  - 

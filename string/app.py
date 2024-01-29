@@ -73,7 +73,7 @@ def get_protein_network(identifiers, species, required_score, network_flavor, ne
 
 def mysql_get_protein():
     # 连接 MySQL
-    engine = create_engine('mysql+pymysql://user:userpw@ip/database', echo=True)
+    engine = create_engine('mysql+pymysql://user:passwd@ip/database', echo=True)
     # 定义 SQL 语句
     query = text('''SELECT Biomarker, String_Name 
                   FROM biomarker 
@@ -104,7 +104,7 @@ def clear_input():
 def example_proteins(key):
     application = key.split()[2]
     # 连接 MySQL
-    engine = create_engine('mysql+pymysql://user:userpw@ip/database', echo=True)
+    engine = create_engine('mysql+pymysql://user:passwd@ip/database', echo=True)
     # 定义 SQL 语句
     query = text(f'''SELECT String_Name 
                    FROM biomarker 
